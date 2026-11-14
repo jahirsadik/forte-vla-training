@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="forte_sorting_scene">
+  <include file="environment.xml" />
+  <include file="robot.xml" />
+  <keyframe>
+    <key name="home" qpos="0.24 -0.27 0.783 1 0 0 0 0.39 -0.27 0.7955 1 0 0 0 0.24 -0.06 0.7785 0.7071067812 0 0.7071067812 0 0.39 -0.06 0.783 1 0 0 0 0.24 0.15 0.7745 1 0 0 0 0.39 0.15 0.773 1 0 0 0 0 -1.570796327 0 -1.570796327 0 1.570796327 0 0.037 0.037" />
+  </keyframe>
+</mujoco>

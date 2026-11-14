@@ -37,7 +37,7 @@ class ReachPlanner:
     def __init__(self, robot):
         self.robot = robot
         self.config = json.loads(WORKSPACE_PATH.read_text(encoding="utf-8"))["workspace"]
-        np.testing.assert_allclose(robot.model.geom("table_top").pos, self.config["table_center_m"])
+        np.testing.assert_allclose(robot.data.geom("table_top").xpos, self.config["table_center_m"])
         np.testing.assert_allclose(robot.model.geom("table_top").size, self.config["table_half_size_m"])
         for color in ("red", "green", "blue"):
             np.testing.assert_allclose(robot.data.site(f"target_{color}").xpos[:2],
@@ -94,7 +94,7 @@ class ReachPlanner:
         for t in np.linspace(0, duration, max(101, len(nodes) * 2)):
             q, dq = path.sample(t)
             if np.any(np.abs(dq) > self.robot.speed_limits):
-                raise ValueError(f"{label}: reference speed exceeds URDF limits")
+                raise ValueError(f"{label}: reference speed exceeds configured operating limits")
             self.check_q(q)
         return path
 
@@ -102,8 +102,8 @@ class ReachPlanner:
         yield self.robot.home
         for roll, wrist in ((0, 1.2), (-2.9, -1.3), (2.9, -1.3)):
             values = dict(zip(("shoulder_yaw", "shoulder_pitch", "shoulder_roll", "elbow_pitch",
-                               "lower_arm_roll", "wrist_pitch"),
-                              (np.arctan2(position[1], position[0]), -1.2, 0, 1.6, roll, wrist)))
+                               "lower_arm_roll", "wrist_pitch", "wrist_roll"),
+                              (-np.arctan2(position[1], position[0]), -1.2, 0, -1.6, roll, -wrist, 0)))
             yield np.array([values[name] for name in self.robot.joint_names])
 
     def plan_task(self, color):

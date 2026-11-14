@@ -1,6 +1,6 @@
 """Forte parallel gripper: widths in metres, one force input in newtons.
 
-Positive left-slider motion closes the jaws. The right slider is a passive
+Positive left-slider motion opens the jaws. The right slider is a passive
 equality-coupled follower, not a second independently commanded joint.
 """
 
@@ -35,36 +35,38 @@ class ForteGripper:
         self.driver_dof = int(driver.dofadr[0])
         self.follower_dof = int(follower.dofadr[0])
         self.lower, self.upper = map(float, driver.range)
-        np.testing.assert_allclose(follower.range, [-self.upper, -self.lower])
+        np.testing.assert_allclose(follower.range, [self.lower, self.upper])
         matches = [i for i in range(model.neq)
                    if model.eq_type[i] == mujoco.mjtEq.mjEQ_JOINT
-                   and model.eq_obj1id[i] == follower.id
-                   and model.eq_obj2id[i] == driver.id]
+                   and model.eq_obj1id[i] == driver.id
+                   and model.eq_obj2id[i] == follower.id]
         if len(matches) != 1:
             raise ValueError("Expected exactly one right-to-left finger coupling")
-        np.testing.assert_allclose(model.eq_data[matches[0], :5], [0, -1, 0, 0, 0])
+        np.testing.assert_allclose(model.eq_data[matches[0], :5], [0, 1, 0, 0, 0])
         self.site = model.site(self.config["tool_site"]).id
-        self.left_face = model.geom("l_finger_finger_taper").id
-        self.right_face = model.geom("r_finger_finger_taper").id
-        self.min_width = self.width_from_position(self.upper)
-        self.max_width = self.width_from_position(self.lower)
+        self.contact_geoms = {side: {model.geom(name).id for name in names}
+                              for side, names in self.config["finger_contact_geoms"].items()}
+        self.left_face = next(iter(self.contact_geoms["l"]))
+        self.right_face = next(iter(self.contact_geoms["r"]))
+        self.min_width = self.width_from_position(self.lower)
+        self.max_width = self.width_from_position(self.upper)
         for name in ("open_width_m", "empty_close_width_m", "grasp_reference_width_m"):
             self.position_from_width(self.config[name])
         if any(not np.isfinite(self.config[k]) or self.config[k] <= 0 for k in
                ("kp_n_per_m", "kd_n_s_per_m", "effort_limit_n", "speed_limit_m_per_s")):
             raise ValueError("Gripper gains and limits must be finite and positive")
         # Applied generalized forces bypass actuator limits: enforce the bound here.
-        urdf_effort = float(model.jnt_actfrcrange[driver.id, 1])
-        if self.config["effort_limit_n"] > urdf_effort:
-            raise ValueError("Configured gripper force exceeds the imported URDF limit")
+        model_effort = float(model.jnt_actfrcrange[driver.id, 1])
+        if self.config["effort_limit_n"] > model_effort:
+            raise ValueError("Configured gripper force exceeds the derived model limit")
 
     def width_from_position(self, position: float) -> float:
-        return float(self.config["zero_opening_m"] - 2 * position)
+        return float(2 * position)
 
     def position_from_width(self, width: float) -> float:
         if not np.isfinite(width):
             raise ValueError("Gripper width must be finite")
-        position = (self.config["zero_opening_m"] - width) / 2
+        position = width / 2
         if position < self.lower - 1e-12 or position > self.upper + 1e-12:
             raise ValueError(f"Width {width:g} m is outside the Forte opening range")
         return float(np.clip(position, self.lower, self.upper))
@@ -73,7 +75,7 @@ class ForteGripper:
         """Assign both coordinates only at fixture/reset initialization."""
         position = self.position_from_width(width)
         data.qpos[self.driver_qpos] = position
-        data.qpos[self.follower_qpos] = -position
+        data.qpos[self.follower_qpos] = position
         data.qvel[[self.driver_dof, self.follower_dof]] = 0
 
     def apply(self, data: mujoco.MjData, width: float, driver_speed: float = 0.0) -> float:
@@ -91,12 +93,16 @@ class ForteGripper:
         """Measure inner-face gap and transverse center error in the tool frame."""
         rotation = data.site_xmat[self.site].reshape(3, 3)
         center = data.site_xpos[self.site]
-        local = [rotation.T @ (data.geom_xpos[g] - center)
-                 for g in (self.left_face, self.right_face)]
-        extents = []
-        for g in (self.left_face, self.right_face):
-            axes = rotation.T @ data.geom_xmat[g].reshape(3, 3)
-            extents.append(float(np.abs(axes[1]) @ self.model.geom_size[g]))
-        gap = local[1][1] - extents[1] - local[0][1] - extents[0]
-        midpoint = (local[0] + local[1]) / 2
+        intervals, midpoints = [], []
+        for geom in (self.left_face, self.right_face):
+            mesh = self.model.geom_dataid[geom]
+            start, count = self.model.mesh_vertadr[mesh], self.model.mesh_vertnum[mesh]
+            vertices = self.model.mesh_vert[start:start + count]
+            world = vertices @ data.geom_xmat[geom].reshape(3, 3).T + data.geom_xpos[geom]
+            local = (world - center) @ rotation
+            intervals.append((float(local[:, 1].min()), float(local[:, 1].max())))
+            midpoints.append((local.min(axis=0) + local.max(axis=0)) / 2)
+        intervals.sort()
+        gap = intervals[1][0] - intervals[0][1]
+        midpoint = np.mean(midpoints, axis=0)
         return float(gap), float(np.linalg.norm(midpoint[1:]))

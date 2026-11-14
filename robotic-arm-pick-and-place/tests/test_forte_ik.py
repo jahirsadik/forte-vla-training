@@ -55,8 +55,8 @@ class ForteIKTests(unittest.TestCase):
         np.testing.assert_allclose(self.ik.data.body("cube_green").xpos, position + rotation @ offset)
         np.testing.assert_array_equal(robot.data.qpos, before)
         cube = robot.model.geom("cube_green").id
-        self.assertTrue(self.ik.allowed_payload_contact(cube, robot.model.geom("l_finger_finger_taper").id))
-        self.assertFalse(self.ik.allowed_payload_contact(cube, robot.model.geom("l_finger_slider_plate").id))
+        self.assertTrue(self.ik.allowed_payload_contact(cube, robot.gripper.left_face))
+        self.assertFalse(self.ik.allowed_payload_contact(cube, robot.model.geom("part_1_35_collision_0").id))
         unloaded = robot.gravity_effort()
         robot.set_payload("cube_green")
         self.assertGreater(np.linalg.norm(robot.gravity_effort() - unloaded), 0.01)
@@ -82,9 +82,9 @@ class ForteIKTests(unittest.TestCase):
         self.assertIn("collision", result.reason)
 
     def test_geometric_solution_with_excess_gravity_torque_is_rejected(self):
-        q = np.array([0, -0.35, 0, 0.01, 0, 0.01])
+        q = self.robot.home.copy()
         position, quaternion = self.ik.pose(q)
-        self.assertGreater(float(np.max(np.abs(self.ik.data.qfrc_bias[self.robot.dof_indices]))), 10)
+        self.robot.effort_limits[:] = 0.01  # Force a low-capability robot for this screening test.
         result = self.ik.solve(position, quaternion, q)
         self.assertFalse(result.success)
         self.assertEqual(result.reason, "static gravity torque margin")
@@ -92,10 +92,11 @@ class ForteIKTests(unittest.TestCase):
     def test_joint_mapping_with_free_objects_before_robot(self):
         # Reorder XML bodies so array-prefix indexing would address cube DOFs.
         spec = mujoco.MjSpec.from_file(str(SCENES["forte"]))
+        spec.compiler.savecompiled = False
         spec.compile()
         root = ET.fromstring(spec.to_xml())
         for mesh in root.findall("asset/mesh"):
-            mesh.set("file", str(SCENES["forte"].parent / "source" / Path(mesh.get("file")).name))
+            mesh.set("file", str(SCENES["forte"].parent / "source_7dof" / "meshes" / Path(mesh.get("file")).name))
         root.find("compiler").attrib.pop("meshdir", None)
         keys = root.find("keyframe")
         if keys is not None:

@@ -13,7 +13,7 @@ import numpy as np
 
 
 class RobotInterface(ABC):
-    def __init__(self, model, data, joint_names, home, speed_limits):
+    def __init__(self, model, data, joint_names, home, speed_limits, position_limits=None):
         self.model, self.data = model, data
         self.joint_names = tuple(joint_names)
         self.joint_ids = np.array([model.joint(name).id for name in joint_names])
@@ -21,7 +21,23 @@ class RobotInterface(ABC):
             raise ValueError("Expected one hinge coordinate per arm joint")
         self.qpos_indices = model.jnt_qposadr[self.joint_ids].copy()
         self.dof_indices = model.jnt_dofadr[self.joint_ids].copy()
-        self.lower, self.upper = model.jnt_range[self.joint_ids].T.copy()
+        self.moving_body_ids = set()
+        for body in range(1, model.nbody):
+            ancestor = body
+            while ancestor:
+                if any(model.jnt_bodyid[joint] == ancestor for joint in self.joint_ids):
+                    self.moving_body_ids.add(body)
+                    break
+                ancestor = int(model.body_parentid[ancestor])
+        limits = (model.jnt_range[self.joint_ids] if position_limits is None
+                  else np.asarray(position_limits, dtype=float))
+        if limits.shape != (len(joint_names), 2) or not np.isfinite(limits).all() or np.any(limits[:, 0] >= limits[:, 1]):
+            raise ValueError("Expected explicit finite operating bounds for each arm joint")
+        limited = model.jnt_limited[self.joint_ids].astype(bool)
+        physical = model.jnt_range[self.joint_ids]
+        if np.any(limits[limited, 0] < physical[limited, 0] - 1e-10) or np.any(limits[limited, 1] > physical[limited, 1] + 1e-10):
+            raise ValueError("Operating bounds exceed physical model limits")
+        self.lower, self.upper = limits.T.copy()
         self.home = np.asarray(home, dtype=float)
         self.speed_limits = np.asarray(speed_limits, dtype=float)
         self.target_q = self.home.copy()

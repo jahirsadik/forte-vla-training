@@ -1,4 +1,4 @@
-"""Six-joint Forte arm: bounded PD + pure gravity feedforward.
+"""Seven-joint Forte arm: bounded PD + pure gravity feedforward.
 
 Gravity is evaluated at the measured pose on a zero-velocity scratch state.
 Only arm gravity terms are applied; free objects receive no compensating force.
@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-import xml.etree.ElementTree as ET
 
 import mujoco
 import numpy as np
@@ -19,7 +18,6 @@ from .interface import RobotInterface
 
 PROJECT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = PROJECT / "configs" / "forte.json"
-URDF_PATH = PROJECT / "assets" / "forte_arm" / "source" / "ForteME.urdf"
 
 
 class ForteRobot(RobotInterface):
@@ -27,17 +25,16 @@ class ForteRobot(RobotInterface):
         self.config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))["arm"]
         names = tuple(self.config["joints"])
         entries = list(self.config["joints"].values())
-        source = ET.parse(URDF_PATH).getroot()
-        limits = [source.find(f"joint[@name='{name}']/limit").attrib for name in names]
         super().__init__(model, data, names, [item["home_rad"] for item in entries],
-                         [float(limit["velocity"]) for limit in limits])
-        if len(names) != 6 or model.nu != 0 or model.neq != 1:
-            raise ValueError("Expected the unbraced Forte task scene: 6 arm joints, no actuators, one mimic")
+                         [item["speed_limit_rad_s"] for item in entries],
+                         [item["position_limits_rad"] for item in entries])
+        if len(names) != 7 or model.nu != 0 or model.neq != 1:
+            raise ValueError("Expected 7 arm joints, one bounded-force backend, one finger coupling")
         if np.any(model.body_gravcomp != 0):
             raise ValueError("Passive gravity compensation would double-count Forte feedforward")
         self.kp = np.array([item["kp_nm_per_rad"] for item in entries], dtype=float)
         self.kd = np.array([item["kd_nm_s_per_rad"] for item in entries], dtype=float)
-        self.effort_limits = np.array([float(limit["effort"]) for limit in limits])
+        self.effort_limits = np.array([item["effort_limit_nm"] for item in entries])
         for vector in (self.kp, self.kd, self.effort_limits, self.speed_limits):
             if not np.isfinite(vector).all() or np.any(vector <= 0):
                 raise ValueError("Forte gains and effort/speed limits must be finite and positive")

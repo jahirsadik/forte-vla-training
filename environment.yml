@@ -1,0 +1,9 @@
+name: forte-mujoco
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - nodejs=24
+  - pip:
+      - -r robotic-arm-pick-and-place/requirements.txt

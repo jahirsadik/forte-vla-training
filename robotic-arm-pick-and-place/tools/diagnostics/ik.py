@@ -134,7 +134,7 @@ def run(args):
         context = mj_viewer.launch_passive(robot.model, robot.data)
     peak_tracking = peak_rotation = peak_gravity = peak_speed = peak_torque = peak_penetration = 0.0
     endpoint_errors = []
-    saturation = np.zeros(6, dtype=int)
+    saturation = np.zeros(len(robot.joint_names), dtype=int)
     cube_start = {c: robot.data.body(f"cube_{c}").xpos.copy() for c in ("red", "green", "blue")}
     dt = robot.model.opt.timestep
     frame_index = 0
@@ -145,7 +145,7 @@ def run(args):
                 with viewer.lock():
                     viewer.cam.lookat[:] = (0.4, 0, 0.3)
                     viewer.cam.distance, viewer.cam.azimuth, viewer.cam.elevation = 1.6, 140, -25
-                    viewer.opt.geomgroup[0] = int(args.collision_geoms)
+                    viewer.opt.geomgroup[3] = int(args.collision_geoms)
                     viewer.opt.geomgroup[1] = int(not args.collision_geoms)
             wall_start = time.perf_counter()
             for color in colors:

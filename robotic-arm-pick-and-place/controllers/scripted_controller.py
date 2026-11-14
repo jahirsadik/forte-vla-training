@@ -244,7 +244,7 @@ class ForteController:
                 held = self.model.geom(self.active_cube).id
                 if held in (a, b):
                     other = b if a == held else a
-                    allowed = self._names[other].startswith(("l_finger_finger_", "r_finger_finger_"))
+                    allowed = any(other in gs for gs in self.robot.gripper.contact_geoms.values())
             if contact.dist < (-0.0005 if allowed else -1e-5):
                 raise RuntimeError(f"Unexpected contact/penetration: {self._names[a]}/{self._names[b]}")
         if self.recorder is not None:
@@ -286,7 +286,7 @@ class ForteController:
             alpha = (i + 1) / steps
             blend = 10 * alpha**3 - 15 * alpha**4 + 6 * alpha**5
             derivative = (30 * alpha**2 - 60 * alpha**3 + 30 * alpha**4) / seconds
-            self.robot.set_gripper_width(start + blend * (end - start), -0.5 * derivative * (end - start))
+            self.robot.set_gripper_width(start + blend * (end - start), 0.5 * derivative * (end - start))
             self._step(viewer)
         self.robot.set_gripper_width(end)
         self._settle(round(0.75 / self.model.opt.timestep), viewer)
@@ -299,9 +299,9 @@ class ForteController:
             a, b = int(c.geom1), int(c.geom2)
             if cube not in (a, b):
                 continue
-            name = self._names[b if a == cube else a]
-            for side, prefix in enumerate(("l_finger_finger_", "r_finger_finger_")):
-                if name.startswith(prefix):
+            other = b if a == cube else a
+            for side, geoms in enumerate(self.robot.gripper.contact_geoms.values()):
+                if other in geoms:
                     mujoco.mj_contactForce(self.model, self.data, i, force)
                     forces[side] += max(0, float(force[0]))
         return forces

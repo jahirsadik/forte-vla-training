@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="bookshelf_environment">
+  <compiler angle="radian" meshdir="../forte_arm/source_7dof" texturedir="textures" fusestatic="false" />
+  <option timestep="0.001" integrator="implicitfast" cone="elliptic" impratio="10" iterations="100" gravity="0 0 -9.81" />
+  <statistic center="0.3 0 0.9" extent="1.6" />
+  <visual>
+    <global offwidth="1280" offheight="960" azimuth="135" elevation="-25" />
+    <headlight ambient="0.32 0.32 0.32" diffuse="0.35 0.35 0.35" specular="0.4 0.4 0.4" />
+    <quality shadowsize="4096" offsamples="4" />
+  </visual>
+  <asset>
+    <texture name="wood" type="2d" file="wood.png" />
+    <material name="wood" texture="wood" texuniform="true" texrepeat="1 1" specular="0.12" shininess="0.15" />
+    <texture name="worktop" type="2d" file="worktop.png" />
+    <material name="worktop" texture="worktop" texuniform="false" texrepeat="1 1" specular="0.18" shininess="0.18" />
+    <texture name="paper" type="2d" file="paper.png" />
+    <material name="paper" texture="paper" texuniform="true" texrepeat="1 1" specular="0.12" shininess="0.15" />
+    <material name="metal" rgba="0.79 0.8 0.79 1" specular="0.45" shininess="0.35" />
+    <material name="rubber" rgba="0.05 0.055 0.06 1" specular="0.15" />
+    <material name="floor_mat" rgba="1 1 1 1" specular="0.08" texture="lab_floor_tex" texuniform="true" texrepeat="2 2" />
+    <material name="wall_mat" rgba="0.86 0.85 0.81 1" specular="0.15" />
+    <material name="placement_mat" rgba="0.12 0.34 0.36 1" />
+    <material name="book_red_cover" rgba="0.65 0.035 0.045 1" specular="0.22" shininess="0.2" />
+    <texture name="book_red_printed_spine" type="2d" file="spine_red.png" />
+    <material name="book_red_printed_spine" texture="book_red_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_blue_cover" rgba="0.035 0.1 0.48 1" specular="0.22" shininess="0.2" />
+    <texture name="book_blue_printed_spine" type="2d" file="spine_blue.png" />
+    <material name="book_blue_printed_spine" texture="book_blue_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_teal_cover" rgba="0.025 0.38 0.42 1" specular="0.22" shininess="0.2" />
+    <texture name="book_teal_printed_spine" type="2d" file="spine_teal.png" />
+    <material name="book_teal_printed_spine" texture="book_teal_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_green_cover" rgba="0.065 0.42 0.08 1" specular="0.22" shininess="0.2" />
+    <texture name="book_green_printed_spine" type="2d" file="spine_green.png" />
+    <material name="book_green_printed_spine" texture="book_green_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_yellow_cover" rgba="0.66 0.58 0.04 1" specular="0.22" shininess="0.2" />
+    <texture name="book_yellow_printed_spine" type="2d" file="spine_yellow.png" />
+    <material name="book_yellow_printed_spine" texture="book_yellow_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_olive_cover" rgba="0.48 0.49 0.035 1" specular="0.22" shininess="0.2" />
+    <texture name="book_olive_printed_spine" type="2d" file="spine_olive.png" />
+    <material name="book_olive_printed_spine" texture="book_olive_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_orange_cover" rgba="0.95 0.32 0.025 1" specular="0.22" shininess="0.2" />
+    <texture name="book_orange_printed_spine" type="2d" file="spine_orange.png" />
+    <material name="book_orange_printed_spine" texture="book_orange_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_reference_1_cover" rgba="0.76 0.72 0.64 1" specular="0.22" shininess="0.2" />
+    <texture name="book_reference_1_printed_spine" type="2d" file="spine_reference_1.png" />
+    <material name="book_reference_1_printed_spine" texture="book_reference_1_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_reference_2_cover" rgba="0.18 0.16 0.13 1" specular="0.22" shininess="0.2" />
+    <texture name="book_reference_2_printed_spine" type="2d" file="spine_reference_2.png" />
+    <material name="book_reference_2_printed_spine" texture="book_reference_2_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_reference_3_cover" rgba="0.42 0.23 0.12 1" specular="0.22" shininess="0.2" />
+    <texture name="book_reference_3_printed_spine" type="2d" file="spine_reference_3.png" />
+    <material name="book_reference_3_printed_spine" texture="book_reference_3_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_reference_4_cover" rgba="0.7 0.68 0.57 1" specular="0.22" shininess="0.2" />
+    <texture name="book_reference_4_printed_spine" type="2d" file="spine_reference_4.png" />
+    <material name="book_reference_4_printed_spine" texture="book_reference_4_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_reference_5_cover" rgba="0.28 0.3 0.32 1" specular="0.22" shininess="0.2" />
+    <texture name="book_reference_5_printed_spine" type="2d" file="spine_reference_5.png" />
+    <material name="book_reference_5_printed_spine" texture="book_reference_5_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <material name="book_reference_6_cover" rgba="0.64 0.44 0.29 1" specular="0.22" shininess="0.2" />
+    <texture name="book_reference_6_printed_spine" type="2d" file="spine_reference_6.png" />
+    <material name="book_reference_6_printed_spine" texture="book_reference_6_printed_spine" texuniform="false" texrepeat="1 1" specular="0.16" shininess="0.12" />
+    <texture name="lab_floor_tex" type="2d" file="floor.png" />
+    <material name="lab_whiteboard" rgba="0.91 0.92 0.89 1" specular="0.3" shininess="0.25" />
+    <material name="lab_dark_trim" rgba="0.14 0.15 0.15 1" specular="0.25" />
+  </asset>
+  <custom>
+    <text name="geometry_provenance" data="Photo-inspired estimates, not measured hardware dimensions" />
+  </custom>
+  <worldbody>
+    <light name="key_light" pos="-0.6 -0.8 2.8" dir="0.3 0.2 -1" diffuse="0.8 0.78 0.73" castshadow="true" specular="0.5 0.5 0.5" />
+    <light name="fill_light" pos="0.8 0.8 2.2" dir="0 0 -1" diffuse="0.35 0.4 0.45" castshadow="false" specular="0.5 0.5 0.5" />
+    <geom name="floor" type="plane" size="3 3 0.05" material="floor_mat" group="2" />
+    <geom name="room_back_wall" type="box" pos="1.7 0 1.5" size="0.04 3 1.5" material="wall_mat" group="2" friction="0.7 0.005 0.0001" />
+    <geom name="room_side_wall" type="box" pos="0 1.7 1.5" size="3 0.04 1.5" material="wall_mat" group="2" friction="0.7 0.005 0.0001" />
+    <body name="workbench" pos="0.25 0 0">
+      <geom name="table_top" type="box" pos="0 0 0.74" size="0.65 0.55 0.02" material="worktop" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_leg_0_0" type="box" pos="-0.59 -0.49 0.36" size="0.0275 0.0275 0.36" material="metal" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_foot_0_0" type="box" pos="-0.59 -0.49 0.012" size="0.0335 0.0335 0.012" material="rubber" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_leg_0_1" type="box" pos="-0.59 0.49 0.36" size="0.0275 0.0275 0.36" material="metal" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_foot_0_1" type="box" pos="-0.59 0.49 0.012" size="0.0335 0.0335 0.012" material="rubber" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_leg_1_0" type="box" pos="0.59 -0.49 0.36" size="0.0275 0.0275 0.36" material="metal" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_foot_1_0" type="box" pos="0.59 -0.49 0.012" size="0.0335 0.0335 0.012" material="rubber" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_leg_1_1" type="box" pos="0.59 0.49 0.36" size="0.0275 0.0275 0.36" material="metal" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_foot_1_1" type="box" pos="0.59 0.49 0.012" size="0.0335 0.0335 0.012" material="rubber" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_apron_-1" type="box" pos="0 -0.49 0.64" size="0.6 0.0125 0.07" material="metal" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_apron_1" type="box" pos="0 0.49 0.64" size="0.6 0.0125 0.07" material="metal" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="table_rear_brace" type="box" pos="0.59 0 0.22" size="0.0125 0.49 0.0275" material="metal" group="2" friction="0.7 0.005 0.0001" />
+      <geom name="lab_edge_0_-1" type="box" pos="-0.648 0 0.737" size="0.0025 0.55 0.014" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="lab_edge_0_1" type="box" pos="0.648 0 0.737" size="0.0025 0.55 0.014" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="lab_edge_1_-1" type="box" pos="0 -0.548 0.737" size="0.65 0.0025 0.014" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="lab_edge_1_1" type="box" pos="0 0.548 0.737" size="0.65 0.0025 0.014" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="lab_frame_rail_-1" type="box" pos="0 -0.49 0.69" size="0.59 0.018 0.025" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+      <geom type="cylinder" pos="-0.59 -0.4715 0.69" size="0.004 0.0005" quat="0.70710678 0.70710678 0 0" material="lab_dark_trim" contype="0" conaffinity="0" density="0" group="1" />
+      <geom type="cylinder" pos="0.59 -0.4715 0.69" size="0.004 0.0005" quat="0.70710678 0.70710678 0 0" material="lab_dark_trim" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="lab_frame_rail_1" type="box" pos="0 0.49 0.69" size="0.59 0.018 0.025" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+      <geom type="cylinder" pos="-0.59 0.4715 0.69" size="0.004 0.0005" quat="0.70710678 0.70710678 0 0" material="lab_dark_trim" contype="0" conaffinity="0" density="0" group="1" />
+      <geom type="cylinder" pos="0.59 0.4715 0.69" size="0.004 0.0005" quat="0.70710678 0.70710678 0 0" material="lab_dark_trim" contype="0" conaffinity="0" density="0" group="1" />
+    </body>
+    <body name="bookshelf" pos="0.65 0 0.76">
+      <geom name="shelf_left" type="box" pos="0 0.261 0.215" size="0.12 0.009 0.215" material="wood" group="2" friction="0.55 0.005 0.0001" />
+      <geom name="shelf_right" type="box" pos="0 -0.261 0.215" size="0.12 0.009 0.215" material="wood" group="2" friction="0.55 0.005 0.0001" />
+      <geom name="shelf_back" type="box" pos="0.111 0 0.215" size="0.009 0.252 0.215" material="wood" group="2" friction="0.55 0.005 0.0001" />
+      <geom name="shelf_bottom" type="box" pos="-0.009 0 0.026" size="0.111 0.252 0.009" material="wood" group="3" friction="0.55 0.005 0.0001" />
+      <geom name="shelf_bottom_finish" type="box" pos="-0.0045 0 0.026" size="0.1065 0.252 0.009" material="wood" group="1" friction="0.55 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="shelf_bottom_rounded_lip" type="capsule" fromto="-0.111 -0.243 0.026 -0.111 0.243 0.026" size="0.009" material="wood" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="shelf_upper" type="box" pos="-0.009 0 0.341" size="0.111 0.252 0.009" material="wood" group="3" friction="0.55 0.005 0.0001" />
+      <geom name="shelf_upper_finish" type="box" pos="-0.0045 0 0.341" size="0.1065 0.252 0.009" material="wood" group="1" friction="0.55 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="shelf_upper_rounded_lip" type="capsule" fromto="-0.111 -0.243 0.341 -0.111 0.243 0.341" size="0.009" material="wood" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="shelf_opening" pos="-0.12 0 0.1835" size="0.005" group="5" />
+    </body>
+    <geom name="placement_mat" type="box" pos="0.28 0.04 0.7601" size="0.14 0.15 0.0001" material="placement_mat" group="2" friction="0.7 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+    <body name="book_red" pos="0.618 0.0355 0.9205" quat="1 0 0 0">
+      <freejoint name="book_red_joint" />
+      <inertial pos="0 0 0" mass="0.25" diaginertia="0.001318416667 0.001835416667 0.0005496666667" />
+      <geom name="book_red_collision" type="box" size="0.08 0.014 0.125" group="3" rgba="0.65 0.035 0.045 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_red_cover_-1" type="box" pos="0 -0.0132 0" size="0.08 0.0008 0.125" material="book_red_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_red_cover_1" type="box" pos="0 0.0132 0" size="0.08 0.0008 0.125" material="book_red_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_red_pages" type="box" pos="0.001 0 0" size="0.078 0.0124 0.123" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_red_spine" type="box" pos="-0.0792 0 0" size="0.0008 0.014 0.125" material="book_red_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_red_band_low" type="box" pos="-0.08005 0 -0.085" size="5e-05 0.01064 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_red_band_high" type="box" pos="-0.08005 0 0.085" size="5e-05 0.01064 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_red_printed_spine" type="box" pos="-0.08012 0 0" xyaxes="0 -1 0 0 0 1" size="0.01344 0.1225 3e-05" material="book_red_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_red_grasp" pos="-0.08 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_blue" pos="0.623 0.0655 0.918" quat="1 0 0 0">
+      <freejoint name="book_blue_joint" />
+      <inertial pos="0 0 0" mass="0.28" diaginertia="0.001424476667 0.002074916667 0.0006982266667" />
+      <geom name="book_blue_collision" type="box" size="0.085 0.016 0.1225" group="3" rgba="0.035 0.1 0.48 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_blue_cover_-1" type="box" pos="0 -0.0152 0" size="0.085 0.0008 0.1225" material="book_blue_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_blue_cover_1" type="box" pos="0 0.0152 0" size="0.085 0.0008 0.1225" material="book_blue_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_blue_pages" type="box" pos="0.001 0 0" size="0.083 0.0144 0.1205" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_blue_spine" type="box" pos="-0.0842 0 0" size="0.0008 0.016 0.1225" material="book_blue_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_blue_band_low" type="box" pos="-0.08505 0 -0.0833" size="5e-05 0.01216 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_blue_band_high" type="box" pos="-0.08505 0 0.0833" size="5e-05 0.01216 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_blue_printed_spine" type="box" pos="-0.08512 0 0" xyaxes="0 -1 0 0 0 1" size="0.01536 0.12005 3e-05" material="book_blue_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_blue_grasp" pos="-0.085 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_teal" pos="0.6155 0.0975 0.9155" quat="1 0 0 0">
+      <freejoint name="book_teal_joint" />
+      <inertial pos="0 0 0" mass="0.22" diaginertia="0.001068393333 0.001496458333 0.0004528516667" />
+      <geom name="book_teal_collision" type="box" size="0.0775 0.013 0.12" group="3" rgba="0.025 0.38 0.42 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_teal_cover_-1" type="box" pos="0 -0.0122 0" size="0.0775 0.0008 0.12" material="book_teal_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_teal_cover_1" type="box" pos="0 0.0122 0" size="0.0775 0.0008 0.12" material="book_teal_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_teal_pages" type="box" pos="0.001 0 0" size="0.0755 0.0114 0.118" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_teal_spine" type="box" pos="-0.0767 0 0" size="0.0008 0.013 0.12" material="book_teal_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_teal_band_low" type="box" pos="-0.07755 0 -0.0816" size="5e-05 0.00988 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_teal_band_high" type="box" pos="-0.07755 0 0.0816" size="5e-05 0.00988 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_teal_printed_spine" type="box" pos="-0.07762 0 0" xyaxes="0 -1 0 0 0 1" size="0.01248 0.1176 3e-05" material="book_teal_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_teal_grasp" pos="-0.0775 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_green" pos="0.618 0.125 0.913" quat="1 0 0 0">
+      <freejoint name="book_green_joint" />
+      <inertial pos="0 0 0" mass="0.24" diaginertia="0.00112132 0.0016165 0.00052882" />
+      <geom name="book_green_collision" type="box" size="0.08 0.0145 0.1175" group="3" rgba="0.065 0.42 0.08 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_green_cover_-1" type="box" pos="0 -0.0137 0" size="0.08 0.0008 0.1175" material="book_green_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_green_cover_1" type="box" pos="0 0.0137 0" size="0.08 0.0008 0.1175" material="book_green_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_green_pages" type="box" pos="0.001 0 0" size="0.078 0.0129 0.1155" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_green_spine" type="box" pos="-0.0792 0 0" size="0.0008 0.0145 0.1175" material="book_green_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_green_band_low" type="box" pos="-0.08005 0 -0.0799" size="5e-05 0.01102 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_green_band_high" type="box" pos="-0.08005 0 0.0799" size="5e-05 0.01102 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_green_printed_spine" type="box" pos="-0.08012 0 0" xyaxes="0 -1 0 0 0 1" size="0.01392 0.11515 3e-05" material="book_green_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_green_grasp" pos="-0.08 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_yellow" pos="0.6205 0.159 0.918" quat="1 0 0 0">
+      <freejoint name="book_yellow_joint" />
+      <inertial pos="0 0 0" mass="0.3" diaginertia="0.00153125 0.00218125 0.00071125" />
+      <geom name="book_yellow_collision" type="box" size="0.0825 0.0175 0.1225" group="3" rgba="0.66 0.58 0.04 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_yellow_cover_-1" type="box" pos="0 -0.0167 0" size="0.0825 0.0008 0.1225" material="book_yellow_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_yellow_cover_1" type="box" pos="0 0.0167 0" size="0.0825 0.0008 0.1225" material="book_yellow_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_yellow_pages" type="box" pos="0.001 0 0" size="0.0805 0.0159 0.1205" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_yellow_spine" type="box" pos="-0.0817 0 0" size="0.0008 0.0175 0.1225" material="book_yellow_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_yellow_band_low" type="box" pos="-0.08255 0 -0.0833" size="5e-05 0.0133 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_yellow_band_high" type="box" pos="-0.08255 0 0.0833" size="5e-05 0.0133 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_yellow_printed_spine" type="box" pos="-0.08262 0 0" xyaxes="0 -1 0 0 0 1" size="0.0168 0.12005 3e-05" material="book_yellow_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_yellow_grasp" pos="-0.0825 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_olive" pos="0.618 0.1925 0.9155" quat="1 0 0 0">
+      <freejoint name="book_olive_joint" />
+      <inertial pos="0 0 0" mass="0.27" diaginertia="0.00131904 0.001872 0.00059904" />
+      <geom name="book_olive_collision" type="box" size="0.08 0.016 0.12" group="3" rgba="0.48 0.49 0.035 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_olive_cover_-1" type="box" pos="0 -0.0152 0" size="0.08 0.0008 0.12" material="book_olive_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_olive_cover_1" type="box" pos="0 0.0152 0" size="0.08 0.0008 0.12" material="book_olive_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_olive_pages" type="box" pos="0.001 0 0" size="0.078 0.0144 0.118" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_olive_spine" type="box" pos="-0.0792 0 0" size="0.0008 0.016 0.12" material="book_olive_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_olive_band_low" type="box" pos="-0.08005 0 -0.0816" size="5e-05 0.01216 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_olive_band_high" type="box" pos="-0.08005 0 0.0816" size="5e-05 0.01216 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_olive_printed_spine" type="box" pos="-0.08012 0 0" xyaxes="0 -1 0 0 0 1" size="0.01536 0.1176 3e-05" material="book_olive_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_olive_grasp" pos="-0.08 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_orange" pos="0.42 -0.2 0.778" quat="0.7071067812 0.7071067812 0 0">
+      <freejoint name="book_orange_joint" />
+      <inertial pos="0 0 0" mass="0.28" diaginertia="0.001372583333 0.001941333333 0.0006259166667" />
+      <geom name="book_orange_collision" type="box" size="0.08 0.0175 0.12" group="3" rgba="0.95 0.32 0.025 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_orange_cover_-1" type="box" pos="0 -0.0167 0" size="0.08 0.0008 0.12" material="book_orange_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_orange_cover_1" type="box" pos="0 0.0167 0" size="0.08 0.0008 0.12" material="book_orange_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_orange_pages" type="box" pos="0.001 0 0" size="0.078 0.0159 0.118" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_orange_spine" type="box" pos="-0.0792 0 0" size="0.0008 0.0175 0.12" material="book_orange_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_orange_band_low" type="box" pos="-0.08005 0 -0.0816" size="5e-05 0.0133 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_orange_band_high" type="box" pos="-0.08005 0 0.0816" size="5e-05 0.0133 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_orange_printed_spine" type="box" pos="-0.08012 0 0" xyaxes="0 -1 0 0 0 1" size="0.0168 0.1176 3e-05" material="book_orange_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_orange_grasp" pos="-0.08 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_reference_1" pos="0.6155 -0.0345 0.908" quat="1 0 0 0">
+      <freejoint name="book_reference_1_joint" />
+      <inertial pos="0 0 0" mass="0.23" diaginertia="0.0009832691667 0.001430791667 0.0004734358333" />
+      <geom name="book_reference_1_collision" type="box" size="0.0775 0.013 0.1125" group="3" rgba="0.76 0.72 0.64 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_reference_1_cover_-1" type="box" pos="0 -0.0122 0" size="0.0775 0.0008 0.1125" material="book_reference_1_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_1_cover_1" type="box" pos="0 0.0122 0" size="0.0775 0.0008 0.1125" material="book_reference_1_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_1_pages" type="box" pos="0.001 0 0" size="0.0755 0.0114 0.1105" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_1_spine" type="box" pos="-0.0767 0 0" size="0.0008 0.013 0.1125" material="book_reference_1_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_1_band_low" type="box" pos="-0.07755 0 -0.0765" size="5e-05 0.00988 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_1_band_high" type="box" pos="-0.07755 0 0.0765" size="5e-05 0.00988 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_1_printed_spine" type="box" pos="-0.07762 0 0" xyaxes="0 -1 0 0 0 1" size="0.01248 0.11025 3e-05" material="book_reference_1_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_reference_1_grasp" pos="-0.0775 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_reference_2" pos="0.6205 -0.0625 0.923" quat="1 0 0 0">
+      <freejoint name="book_reference_2_joint" />
+      <inertial pos="0 0 0" mass="0.23" diaginertia="0.0012635625 0.001768125 0.0005390625" />
+      <geom name="book_reference_2_collision" type="box" size="0.0825 0.015 0.1275" group="3" rgba="0.18 0.16 0.13 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_reference_2_cover_-1" type="box" pos="0 -0.0142 0" size="0.0825 0.0008 0.1275" material="book_reference_2_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_2_cover_1" type="box" pos="0 0.0142 0" size="0.0825 0.0008 0.1275" material="book_reference_2_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_2_pages" type="box" pos="0.001 0 0" size="0.0805 0.0134 0.1255" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_2_spine" type="box" pos="-0.0817 0 0" size="0.0008 0.015 0.1275" material="book_reference_2_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_2_band_low" type="box" pos="-0.08255 0 -0.0867" size="5e-05 0.0114 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_2_band_high" type="box" pos="-0.08255 0 0.0867" size="5e-05 0.0114 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_2_printed_spine" type="box" pos="-0.08262 0 0" xyaxes="0 -1 0 0 0 1" size="0.0144 0.12495 3e-05" material="book_reference_2_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_reference_2_grasp" pos="-0.0825 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_reference_3" pos="0.618 -0.094 0.9105" quat="1 0 0 0">
+      <freejoint name="book_reference_3_joint" />
+      <inertial pos="0 0 0" mass="0.23" diaginertia="0.001027889167 0.001504583333 0.0005046391667" />
+      <geom name="book_reference_3_collision" type="box" size="0.08 0.0135 0.115" group="3" rgba="0.42 0.23 0.12 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_reference_3_cover_-1" type="box" pos="0 -0.0127 0" size="0.08 0.0008 0.115" material="book_reference_3_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_3_cover_1" type="box" pos="0 0.0127 0" size="0.08 0.0008 0.115" material="book_reference_3_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_3_pages" type="box" pos="0.001 0 0" size="0.078 0.0119 0.113" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_3_spine" type="box" pos="-0.0792 0 0" size="0.0008 0.0135 0.115" material="book_reference_3_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_3_band_low" type="box" pos="-0.08005 0 -0.0782" size="5e-05 0.01026 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_3_band_high" type="box" pos="-0.08005 0 0.0782" size="5e-05 0.01026 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_3_printed_spine" type="box" pos="-0.08012 0 0" xyaxes="0 -1 0 0 0 1" size="0.01296 0.1127 3e-05" material="book_reference_3_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_reference_3_grasp" pos="-0.08 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_reference_4" pos="0.613 -0.122 0.9205" quat="1 0 0 0">
+      <freejoint name="book_reference_4_joint" />
+      <inertial pos="0 0 0" mass="0.23" diaginertia="0.001214035833 0.001629166667 0.0004473691667" />
+      <geom name="book_reference_4_collision" type="box" size="0.075 0.0145 0.125" group="3" rgba="0.7 0.68 0.57 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_reference_4_cover_-1" type="box" pos="0 -0.0137 0" size="0.075 0.0008 0.125" material="book_reference_4_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_4_cover_1" type="box" pos="0 0.0137 0" size="0.075 0.0008 0.125" material="book_reference_4_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_4_pages" type="box" pos="0.001 0 0" size="0.073 0.0129 0.123" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_4_spine" type="box" pos="-0.0742 0 0" size="0.0008 0.0145 0.125" material="book_reference_4_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_4_band_low" type="box" pos="-0.07505 0 -0.085" size="5e-05 0.01102 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_4_band_high" type="box" pos="-0.07505 0 0.085" size="5e-05 0.01102 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_4_printed_spine" type="box" pos="-0.07512 0 0" xyaxes="0 -1 0 0 0 1" size="0.01392 0.1225 3e-05" material="book_reference_4_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_reference_4_grasp" pos="-0.075 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_reference_5" pos="0.623 -0.1525 0.9055" quat="1 0 0 0">
+      <freejoint name="book_reference_5_joint" />
+      <inertial pos="0 0 0" mass="0.23" diaginertia="0.0009426933333 0.001481583333 0.0005689433333" />
+      <geom name="book_reference_5_collision" type="box" size="0.085 0.014 0.11" group="3" rgba="0.28 0.3 0.32 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_reference_5_cover_-1" type="box" pos="0 -0.0132 0" size="0.085 0.0008 0.11" material="book_reference_5_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_5_cover_1" type="box" pos="0 0.0132 0" size="0.085 0.0008 0.11" material="book_reference_5_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_5_pages" type="box" pos="0.001 0 0" size="0.083 0.0124 0.108" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_5_spine" type="box" pos="-0.0842 0 0" size="0.0008 0.014 0.11" material="book_reference_5_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_5_band_low" type="box" pos="-0.08505 0 -0.0748" size="5e-05 0.01064 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_5_band_high" type="box" pos="-0.08505 0 0.0748" size="5e-05 0.01064 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_5_printed_spine" type="box" pos="-0.08512 0 0" xyaxes="0 -1 0 0 0 1" size="0.01344 0.1078 3e-05" material="book_reference_5_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_reference_5_grasp" pos="-0.085 0 0" size="0.003" group="5" />
+    </body>
+    <body name="book_reference_6" pos="0.6155 -0.179 0.9155" quat="1 0 0 0">
+      <freejoint name="book_reference_6_joint" />
+      <inertial pos="0 0 0" mass="0.23" diaginertia="0.001115979167 0.001564479167 0.0004724583333" />
+      <geom name="book_reference_6_collision" type="box" size="0.0775 0.0125 0.12" group="3" rgba="0.64 0.44 0.29 1" friction="0.65 0.005 0.0001" condim="4" solref="0.006 1" solimp="0.95 0.99 0.001" />
+      <geom name="book_reference_6_cover_-1" type="box" pos="0 -0.0117 0" size="0.0775 0.0008 0.12" material="book_reference_6_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_6_cover_1" type="box" pos="0 0.0117 0" size="0.0775 0.0008 0.12" material="book_reference_6_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_6_pages" type="box" pos="0.001 0 0" size="0.0755 0.0109 0.118" material="paper" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_6_spine" type="box" pos="-0.0767 0 0" size="0.0008 0.0125 0.12" material="book_reference_6_cover" group="1" friction="0.65 0.005 0.0001" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_6_band_low" type="box" pos="-0.07755 0 -0.0816" size="5e-05 0.0095 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_6_band_high" type="box" pos="-0.07755 0 0.0816" size="5e-05 0.0095 0.0013" rgba="0.8 0.72 0.44 1" group="1" contype="0" conaffinity="0" density="0" />
+      <geom name="book_reference_6_printed_spine" type="box" pos="-0.07762 0 0" xyaxes="0 -1 0 0 0 1" size="0.012 0.1176 3e-05" material="book_reference_6_printed_spine" group="1" contype="0" conaffinity="0" density="0" />
+      <site name="book_reference_6_grasp" pos="-0.0775 0 0" size="0.003" group="5" />
+    </body>
+    <site name="insertion_target" pos="0.618 0 0.915" size="0.08 0.0175 0.12" type="box" rgba="0.1 0.9 0.6 0.2" group="5" />
+    <site name="robot_mount" pos="-0.1 0 0.762" size="0.005" group="5" />
+    <camera name="overview" pos="-1.25 -1.65 1.85" xyaxes="0.7326390704 -0.6806173613 0 0.2401847893 0.2585428623 0.9356638581" fovy="43" />
+    <camera name="front" pos="-0.55 -0.65 1.42" xyaxes="0.5191865527 -0.8546609406 0 0.2947567193 0.1790578201 0.9386462451" fovy="47" />
+    <camera name="overhead" pos="0.25 0 2.4" xyaxes="1 0 0 0 1 0" fovy="53" />
+    <geom name="lab_whiteboard_face" type="box" pos="1.653 0 1.55" size="0.004 0.82 0.4" material="lab_whiteboard" contype="0" conaffinity="0" density="0" group="1" />
+    <geom type="box" pos="1.647 0 1.143" size="0.008 0.835 0.007" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+    <geom type="box" pos="1.647 -0.828 1.55" size="0.008 0.007 0.4" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+    <geom type="box" pos="1.647 0 1.957" size="0.008 0.835 0.007" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+    <geom type="box" pos="1.647 0.828 1.55" size="0.008 0.007 0.4" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+    <geom name="lab_marker_tray" type="box" pos="1.625 0 1.135" size="0.025 0.75 0.006" material="metal" contype="0" conaffinity="0" density="0" group="1" />
+  </worldbody>
+</mujoco>

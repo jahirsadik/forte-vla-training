@@ -1,0 +1,2 @@
+# Optional desktop/controller dependency; install alongside requirements.txt.
+pygame==2.6.1

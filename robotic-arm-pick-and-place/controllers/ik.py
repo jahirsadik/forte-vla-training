@@ -52,7 +52,9 @@ class PoseIK:
         if table >= 0:
             environment.add(table)
         self.robot_geoms = np.array([body not in environment for body in self.model.geom_bodyid])
-        self.moving_collision_geoms = np.flatnonzero(self.robot_geoms & (self.model.geom_contype != 0))
+        self.moving_collision_geoms = np.array([g for g in range(self.model.ngeom)
+            if self.robot_geoms[g] and self.model.geom_contype[g]
+            and self.model.geom_bodyid[g] in robot.moving_body_ids])
         self.environment_geoms = [self.model.geom(name).id for name in
                                   ("floor", "table_top", "cube_red", "cube_green", "cube_blue")]
         self.last_clearance = float("inf")
@@ -81,7 +83,7 @@ class PoseIK:
         if self.payload is None or self.payload["geom"] not in (a, b):
             return False
         other = b if a == self.payload["geom"] else a
-        return self.model.geom(other).name.startswith(("l_finger_finger_", "r_finger_finger_"))
+        return any(other in geoms for geoms in self.robot.gripper.contact_geoms.values())
 
     def pose(self, q):
         self.data.qpos[:] = self.robot.data.qpos
@@ -159,7 +161,12 @@ class PoseIK:
         if q.shape != self.robot.home.shape or not np.isfinite(q).all():
             raise ValueError("IK seed must have one finite entry per arm joint")
         desired = desired / np.linalg.norm(desired)
-        low, high = self.robot.lower + self.joint_margin, self.robot.upper - self.joint_margin
+        margin = getattr(self, "solve_joint_margin", self.joint_margin)
+        low, high = self.robot.lower + margin, self.robot.upper - margin
+        # Allocate redundant motion away from narrow joints (notably Forte's
+        # provisional +/-10 degree base yaw). Six-axis solves retain unit mobility.
+        weights = (np.clip(((high - low) / (2 * np.pi)) ** 2, .02, 1.)
+                   if len(q) > 6 else np.ones(len(q)))
         q = np.clip(q, low, high)
         reason = "iteration limit / unreachable from seed"
         for iteration in range(max_iterations + 1):
@@ -174,7 +181,15 @@ class PoseIK:
             mujoco.mj_jacSite(self.model, self.data, self.jp, self.jr, self.robot.site_id)
             jacobian = np.vstack([self.jp[:, self.robot.dof_indices], 0.2 * self.jr[:, self.robot.dof_indices]])
             error = np.r_[ep, 0.2 * er]
-            dq = jacobian.T @ np.linalg.solve(jacobian @ jacobian.T + 0.005**2 * np.eye(6), error)
+            weighted = weights[:, None] * jacobian.T
+            inverse = np.linalg.solve(jacobian @ weighted + 0.005**2 * np.eye(6), np.eye(6))
+            pseudo = weighted @ inverse
+            dq = pseudo @ error
+            if len(q) > 6:
+                # A small rest-posture term resolves the extra degree of freedom
+                # without replacing full-pose or collision acceptance checks.
+                rest = .03 * np.clip(self.robot.home - q, -.5, .5)
+                dq += (np.eye(len(q)) - pseudo @ jacobian) @ rest
             dq *= min(1, 0.15 / max(float(np.max(np.abs(dq))), 1e-12))
             score = float(error @ error)
             improved = False

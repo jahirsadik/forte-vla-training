@@ -1,0 +1,15 @@
+{
+  "version": "forte-correction-pilot-v2",
+  "case_id": "0fc510ebb88105fe8404",
+  "execution_horizon_steps": 8,
+  "confirmation_steps": 3,
+  "rollouts": [
+    {"policy_seed": 23, "minimum_policy_steps": 650, "expert": "grasped_carry_recovery_v1"},
+    {"policy_seed": 23, "minimum_policy_steps": 900, "expert": "grasped_carry_recovery_v1"},
+    {"policy_seed": 23, "minimum_policy_steps": 1200, "expert": "grasped_carry_recovery_v1"},
+    {"policy_seed": 24, "minimum_policy_steps": 650, "expert": "grasped_carry_recovery_v1"},
+    {"policy_seed": 25, "minimum_policy_steps": 650, "expert": "grasped_carry_recovery_v1"},
+    {"policy_seed": 0, "minimum_policy_steps": 650, "expert": "supported_goal_release_v1"},
+    {"policy_seed": 17, "minimum_policy_steps": 650, "expert": "supported_goal_release_v1"}
+  ]
+}

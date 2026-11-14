@@ -1,0 +1,612 @@
+{
+  "version": "forte-sorting-coverage-v1",
+  "scope": "Train-only expert coverage and counterfactual collection; no validation/test execution or generalization claim",
+  "manifest_sha256": "9debe03907a3bb6ab4fc315ab4a7c1e8ac36cfd78f313ce8a987fa41c51eb062",
+  "environment": "sorting",
+  "split": "train",
+  "groups": {
+    "nominal": [
+      "0fc510ebb88105fe8404",
+      "e9a4978a1920088f44ca",
+      "69decadfa28b80caa1be",
+      "d9ffe9be81c21ae18da5",
+      "9d5f3563b255566a2dae",
+      "0f99c417e0b60fa0ad84",
+      "310ba7d8eb0808f13168",
+      "e358e6be8f096e8df423",
+      "696267eb00f7f3fa3f6f",
+      "cd64f80013dea834c0d8",
+      "22fb0f6abb40a3ac067e",
+      "f9e1b2b514a1fdb6da64",
+      "5f7c588e9b1f81231a00",
+      "21521f3044820bf05ccc",
+      "01152d7ded9bb0247ed0",
+      "e50f58fcc0f1dcb09321",
+      "80347680380dc899a6b6",
+      "576ea28b950bf01b2cf1",
+      "a180e0d67abe97d8d100",
+      "c2034102ad7bc280e315",
+      "408af8b0c14fabfabd3b",
+      "93ec940ec23bbf4d525d",
+      "216611619525986d18f0",
+      "1ac0f03735b79d76c94b",
+      "af5ec848e39432df4f02",
+      "caa5536f361d623fd5b5",
+      "1ed9507698dc6096a9e5",
+      "e5a56c6adbd9f5683bfa",
+      "a37a5a78d3d09c1ea46b",
+      "032bca67ee19f5489cd6",
+      "6678027baa283d12b21a",
+      "976a3131684f2fd394a8",
+      "2f68d73377dfff00b2f6",
+      "fe070eca61ff704caa1e",
+      "391a16312351d079acc6",
+      "3f014564727f60ace589",
+      "dc23c7f017ad34b8cb0a",
+      "a2475ce95c718c082614",
+      "c1b4d79322a969a5c430",
+      "c5dc48681b1ececae683",
+      "ea5f6664924e184798b2",
+      "263becbfd568bf55a110",
+      "968fab76f7f97b5ee25a",
+      "dc8541fd50aa6af830ab",
+      "e5575fb50e9fd3f67f16",
+      "274a301fba085998c65d",
+      "b63fd07202b9574145ad",
+      "4c61f2a1cc242aa00723",
+      "3d814dc1aab5fa81851d",
+      "a1dc72a1fc1285c4597f",
+      "e7ec485a233ab7374f6a",
+      "81cc086d67134ae1175d",
+      "ae8d64b76a3280ebe9e5",
+      "0e206b0116df5e823c5e",
+      "77d09578c6b97f92f216",
+      "446086fed515ad8bb0d7",
+      "614721d55a790f3e6cd4",
+      "a6fbb9e22217d8b298a4",
+      "5f5b901fe7a7c643faf6",
+      "a8eafb5b6f0392d1b873",
+      "b93ece598fa09bfde7be",
+      "0282ca8bd1c81a097b00",
+      "41d2e4775bcf2952d96e",
+      "32aaca69fbdd9c34fb8d",
+      "c5d97b3bbf007686f9c2",
+      "afed3df1e42af8fa7cfa",
+      "cc2c5fa2b8b202346f3d",
+      "d553ce3dbeecb2478e68",
+      "593a866381337166d429",
+      "d2e98f02ed07cb44cbd1",
+      "72b08b6e16e609cff5cd",
+      "ae6c4006ed9d53a4558f"
+    ],
+    "recovery": [
+      "fea98f33de0993923d61",
+      "097679fb43076cc71256",
+      "abe692fc14bc4b68d52a",
+      "0c36bf37bdb385595696",
+      "eadfe739342d8f2d73cc",
+      "d7e85fb31add35d913df",
+      "492132cc848521c3e8db",
+      "0551c0c0a436600cff49",
+      "d88227c58ed8ebcaee0e",
+      "01732adac024a3636722",
+      "b757a8fc4296818fb172",
+      "5841b1441fb1838ff7ed",
+      "bf5a68bf837c146fbe8c",
+      "2331c97dcfdbd8ea7db2",
+      "80332fd223f32233f128",
+      "dbbc7f5835913d016239",
+      "f2189ce23eee7785d860",
+      "7e0e0b3607f4ab2ed347",
+      "5718a99e8931e0cd6409",
+      "4a84c774ff0ba539809d",
+      "39afd66bbaf31d8cc3aa",
+      "b5259a74cbe3ff76ae96",
+      "b5d79c718fa10b21f9ad",
+      "30d110195a81c1cf9fe2"
+    ]
+  },
+  "scene_groups": [
+    {
+      "scene_id": "a1b391dc8b8f37ca3140",
+      "family_id": "62e5c813132cd3b04e3b",
+      "reset": {
+        "environment": "sorting",
+        "asset_set": "nominal",
+        "seed": 0,
+        "layout": "shuffled",
+        "appearance": "nominal",
+        "appearance_seed": 90000,
+        "clutter_level": 1
+      },
+      "nominal_case_ids": [
+        "0fc510ebb88105fe8404",
+        "e9a4978a1920088f44ca",
+        "69decadfa28b80caa1be",
+        "d9ffe9be81c21ae18da5",
+        "9d5f3563b255566a2dae",
+        "0f99c417e0b60fa0ad84",
+        "310ba7d8eb0808f13168",
+        "e358e6be8f096e8df423",
+        "696267eb00f7f3fa3f6f",
+        "cd64f80013dea834c0d8",
+        "22fb0f6abb40a3ac067e",
+        "f9e1b2b514a1fdb6da64"
+      ],
+      "recovery_case_ids": [
+        "fea98f33de0993923d61",
+        "097679fb43076cc71256",
+        "abe692fc14bc4b68d52a",
+        "0c36bf37bdb385595696",
+        "eadfe739342d8f2d73cc",
+        "d7e85fb31add35d913df",
+        "492132cc848521c3e8db",
+        "0551c0c0a436600cff49",
+        "d88227c58ed8ebcaee0e",
+        "01732adac024a3636722",
+        "b757a8fc4296818fb172",
+        "5841b1441fb1838ff7ed",
+        "bf5a68bf837c146fbe8c",
+        "2331c97dcfdbd8ea7db2",
+        "80332fd223f32233f128",
+        "dbbc7f5835913d016239",
+        "f2189ce23eee7785d860",
+        "7e0e0b3607f4ab2ed347",
+        "5718a99e8931e0cd6409",
+        "4a84c774ff0ba539809d",
+        "39afd66bbaf31d8cc3aa",
+        "b5259a74cbe3ff76ae96",
+        "b5d79c718fa10b21f9ad",
+        "30d110195a81c1cf9fe2"
+      ],
+      "task_ids": [
+        "red_cube_to_red",
+        "red_cube_to_blue",
+        "blue_cylinder_to_blue",
+        "blue_cylinder_to_green",
+        "green_capsule_to_red",
+        "green_capsule_to_green",
+        "yellow_wedge_to_red",
+        "yellow_wedge_to_blue",
+        "purple_bar_to_blue",
+        "purple_bar_to_green",
+        "orange_puck_to_red",
+        "orange_puck_to_green"
+      ],
+      "destination_pairs": {
+        "red_cube": [
+          "red_cube_to_red",
+          "red_cube_to_blue"
+        ],
+        "blue_cylinder": [
+          "blue_cylinder_to_blue",
+          "blue_cylinder_to_green"
+        ],
+        "green_capsule": [
+          "green_capsule_to_red",
+          "green_capsule_to_green"
+        ],
+        "yellow_wedge": [
+          "yellow_wedge_to_red",
+          "yellow_wedge_to_blue"
+        ],
+        "purple_bar": [
+          "purple_bar_to_blue",
+          "purple_bar_to_green"
+        ],
+        "orange_puck": [
+          "orange_puck_to_red",
+          "orange_puck_to_green"
+        ]
+      }
+    },
+    {
+      "scene_id": "948a8e1de3f9382dfa65",
+      "family_id": "97a4f901322471a2635b",
+      "reset": {
+        "environment": "sorting",
+        "asset_set": "nominal",
+        "seed": 1,
+        "layout": "shuffled",
+        "appearance": "nominal",
+        "appearance_seed": 90001,
+        "clutter_level": 1
+      },
+      "nominal_case_ids": [
+        "5f7c588e9b1f81231a00",
+        "21521f3044820bf05ccc",
+        "01152d7ded9bb0247ed0",
+        "e50f58fcc0f1dcb09321",
+        "80347680380dc899a6b6",
+        "576ea28b950bf01b2cf1",
+        "a180e0d67abe97d8d100",
+        "c2034102ad7bc280e315",
+        "408af8b0c14fabfabd3b",
+        "93ec940ec23bbf4d525d",
+        "216611619525986d18f0",
+        "1ac0f03735b79d76c94b"
+      ],
+      "recovery_case_ids": [],
+      "task_ids": [
+        "red_cube_to_red",
+        "red_cube_to_blue",
+        "blue_cylinder_to_blue",
+        "blue_cylinder_to_green",
+        "green_capsule_to_red",
+        "green_capsule_to_green",
+        "yellow_wedge_to_red",
+        "yellow_wedge_to_blue",
+        "purple_bar_to_blue",
+        "purple_bar_to_green",
+        "orange_puck_to_red",
+        "orange_puck_to_green"
+      ],
+      "destination_pairs": {
+        "red_cube": [
+          "red_cube_to_red",
+          "red_cube_to_blue"
+        ],
+        "blue_cylinder": [
+          "blue_cylinder_to_blue",
+          "blue_cylinder_to_green"
+        ],
+        "green_capsule": [
+          "green_capsule_to_red",
+          "green_capsule_to_green"
+        ],
+        "yellow_wedge": [
+          "yellow_wedge_to_red",
+          "yellow_wedge_to_blue"
+        ],
+        "purple_bar": [
+          "purple_bar_to_blue",
+          "purple_bar_to_green"
+        ],
+        "orange_puck": [
+          "orange_puck_to_red",
+          "orange_puck_to_green"
+        ]
+      }
+    },
+    {
+      "scene_id": "2fd605c2088c1ad4a3c8",
+      "family_id": "c806058d20b060b47775",
+      "reset": {
+        "environment": "sorting",
+        "asset_set": "nominal",
+        "seed": 2,
+        "layout": "shuffled",
+        "appearance": "nominal",
+        "appearance_seed": 90002,
+        "clutter_level": 1
+      },
+      "nominal_case_ids": [
+        "af5ec848e39432df4f02",
+        "caa5536f361d623fd5b5",
+        "1ed9507698dc6096a9e5",
+        "e5a56c6adbd9f5683bfa",
+        "a37a5a78d3d09c1ea46b",
+        "032bca67ee19f5489cd6",
+        "6678027baa283d12b21a",
+        "976a3131684f2fd394a8",
+        "2f68d73377dfff00b2f6",
+        "fe070eca61ff704caa1e",
+        "391a16312351d079acc6",
+        "3f014564727f60ace589"
+      ],
+      "recovery_case_ids": [],
+      "task_ids": [
+        "red_cube_to_red",
+        "red_cube_to_blue",
+        "blue_cylinder_to_blue",
+        "blue_cylinder_to_green",
+        "green_capsule_to_red",
+        "green_capsule_to_green",
+        "yellow_wedge_to_red",
+        "yellow_wedge_to_blue",
+        "purple_bar_to_blue",
+        "purple_bar_to_green",
+        "orange_puck_to_red",
+        "orange_puck_to_green"
+      ],
+      "destination_pairs": {
+        "red_cube": [
+          "red_cube_to_red",
+          "red_cube_to_blue"
+        ],
+        "blue_cylinder": [
+          "blue_cylinder_to_blue",
+          "blue_cylinder_to_green"
+        ],
+        "green_capsule": [
+          "green_capsule_to_red",
+          "green_capsule_to_green"
+        ],
+        "yellow_wedge": [
+          "yellow_wedge_to_red",
+          "yellow_wedge_to_blue"
+        ],
+        "purple_bar": [
+          "purple_bar_to_blue",
+          "purple_bar_to_green"
+        ],
+        "orange_puck": [
+          "orange_puck_to_red",
+          "orange_puck_to_green"
+        ]
+      }
+    },
+    {
+      "scene_id": "80e53a24d43b0da018a2",
+      "family_id": "c91e888255e36f3a53fb",
+      "reset": {
+        "environment": "sorting",
+        "asset_set": "train_small",
+        "seed": 0,
+        "layout": "shuffled",
+        "appearance": "nominal",
+        "appearance_seed": 90000,
+        "clutter_level": 1
+      },
+      "nominal_case_ids": [
+        "dc23c7f017ad34b8cb0a",
+        "a2475ce95c718c082614",
+        "c1b4d79322a969a5c430",
+        "c5dc48681b1ececae683",
+        "ea5f6664924e184798b2",
+        "263becbfd568bf55a110",
+        "968fab76f7f97b5ee25a",
+        "dc8541fd50aa6af830ab",
+        "e5575fb50e9fd3f67f16",
+        "274a301fba085998c65d",
+        "b63fd07202b9574145ad",
+        "4c61f2a1cc242aa00723"
+      ],
+      "recovery_case_ids": [],
+      "task_ids": [
+        "red_cube_to_red",
+        "red_cube_to_blue",
+        "blue_cylinder_to_blue",
+        "blue_cylinder_to_green",
+        "green_capsule_to_red",
+        "green_capsule_to_green",
+        "yellow_wedge_to_red",
+        "yellow_wedge_to_blue",
+        "purple_bar_to_blue",
+        "purple_bar_to_green",
+        "orange_puck_to_red",
+        "orange_puck_to_green"
+      ],
+      "destination_pairs": {
+        "red_cube": [
+          "red_cube_to_red",
+          "red_cube_to_blue"
+        ],
+        "blue_cylinder": [
+          "blue_cylinder_to_blue",
+          "blue_cylinder_to_green"
+        ],
+        "green_capsule": [
+          "green_capsule_to_red",
+          "green_capsule_to_green"
+        ],
+        "yellow_wedge": [
+          "yellow_wedge_to_red",
+          "yellow_wedge_to_blue"
+        ],
+        "purple_bar": [
+          "purple_bar_to_blue",
+          "purple_bar_to_green"
+        ],
+        "orange_puck": [
+          "orange_puck_to_red",
+          "orange_puck_to_green"
+        ]
+      }
+    },
+    {
+      "scene_id": "08813e418c3f60f9a3fb",
+      "family_id": "57cdb1a0739c3ae41f6b",
+      "reset": {
+        "environment": "sorting",
+        "asset_set": "train_small",
+        "seed": 1,
+        "layout": "shuffled",
+        "appearance": "nominal",
+        "appearance_seed": 90001,
+        "clutter_level": 1
+      },
+      "nominal_case_ids": [
+        "3d814dc1aab5fa81851d",
+        "a1dc72a1fc1285c4597f",
+        "e7ec485a233ab7374f6a",
+        "81cc086d67134ae1175d",
+        "ae8d64b76a3280ebe9e5",
+        "0e206b0116df5e823c5e",
+        "77d09578c6b97f92f216",
+        "446086fed515ad8bb0d7",
+        "614721d55a790f3e6cd4",
+        "a6fbb9e22217d8b298a4",
+        "5f5b901fe7a7c643faf6",
+        "a8eafb5b6f0392d1b873"
+      ],
+      "recovery_case_ids": [],
+      "task_ids": [
+        "red_cube_to_red",
+        "red_cube_to_blue",
+        "blue_cylinder_to_blue",
+        "blue_cylinder_to_green",
+        "green_capsule_to_red",
+        "green_capsule_to_green",
+        "yellow_wedge_to_red",
+        "yellow_wedge_to_blue",
+        "purple_bar_to_blue",
+        "purple_bar_to_green",
+        "orange_puck_to_red",
+        "orange_puck_to_green"
+      ],
+      "destination_pairs": {
+        "red_cube": [
+          "red_cube_to_red",
+          "red_cube_to_blue"
+        ],
+        "blue_cylinder": [
+          "blue_cylinder_to_blue",
+          "blue_cylinder_to_green"
+        ],
+        "green_capsule": [
+          "green_capsule_to_red",
+          "green_capsule_to_green"
+        ],
+        "yellow_wedge": [
+          "yellow_wedge_to_red",
+          "yellow_wedge_to_blue"
+        ],
+        "purple_bar": [
+          "purple_bar_to_blue",
+          "purple_bar_to_green"
+        ],
+        "orange_puck": [
+          "orange_puck_to_red",
+          "orange_puck_to_green"
+        ]
+      }
+    },
+    {
+      "scene_id": "712dfe9e4c19ff439461",
+      "family_id": "e0fad84d32641755e6c7",
+      "reset": {
+        "environment": "sorting",
+        "asset_set": "train_small",
+        "seed": 2,
+        "layout": "shuffled",
+        "appearance": "nominal",
+        "appearance_seed": 90002,
+        "clutter_level": 1
+      },
+      "nominal_case_ids": [
+        "b93ece598fa09bfde7be",
+        "0282ca8bd1c81a097b00",
+        "41d2e4775bcf2952d96e",
+        "32aaca69fbdd9c34fb8d",
+        "c5d97b3bbf007686f9c2",
+        "afed3df1e42af8fa7cfa",
+        "cc2c5fa2b8b202346f3d",
+        "d553ce3dbeecb2478e68",
+        "593a866381337166d429",
+        "d2e98f02ed07cb44cbd1",
+        "72b08b6e16e609cff5cd",
+        "ae6c4006ed9d53a4558f"
+      ],
+      "recovery_case_ids": [],
+      "task_ids": [
+        "red_cube_to_red",
+        "red_cube_to_blue",
+        "blue_cylinder_to_blue",
+        "blue_cylinder_to_green",
+        "green_capsule_to_red",
+        "green_capsule_to_green",
+        "yellow_wedge_to_red",
+        "yellow_wedge_to_blue",
+        "purple_bar_to_blue",
+        "purple_bar_to_green",
+        "orange_puck_to_red",
+        "orange_puck_to_green"
+      ],
+      "destination_pairs": {
+        "red_cube": [
+          "red_cube_to_red",
+          "red_cube_to_blue"
+        ],
+        "blue_cylinder": [
+          "blue_cylinder_to_blue",
+          "blue_cylinder_to_green"
+        ],
+        "green_capsule": [
+          "green_capsule_to_red",
+          "green_capsule_to_green"
+        ],
+        "yellow_wedge": [
+          "yellow_wedge_to_red",
+          "yellow_wedge_to_blue"
+        ],
+        "purple_bar": [
+          "purple_bar_to_blue",
+          "purple_bar_to_green"
+        ],
+        "orange_puck": [
+          "orange_puck_to_red",
+          "orange_puck_to_green"
+        ]
+      }
+    }
+  ],
+  "collection_subsets": {
+    "nominal_seed0": [
+      "0fc510ebb88105fe8404",
+      "e9a4978a1920088f44ca",
+      "69decadfa28b80caa1be",
+      "d9ffe9be81c21ae18da5",
+      "9d5f3563b255566a2dae",
+      "0f99c417e0b60fa0ad84",
+      "310ba7d8eb0808f13168",
+      "e358e6be8f096e8df423",
+      "696267eb00f7f3fa3f6f",
+      "cd64f80013dea834c0d8",
+      "22fb0f6abb40a3ac067e",
+      "f9e1b2b514a1fdb6da64",
+      "dc23c7f017ad34b8cb0a",
+      "a2475ce95c718c082614",
+      "c1b4d79322a969a5c430",
+      "c5dc48681b1ececae683",
+      "ea5f6664924e184798b2",
+      "263becbfd568bf55a110",
+      "968fab76f7f97b5ee25a",
+      "dc8541fd50aa6af830ab",
+      "e5575fb50e9fd3f67f16",
+      "274a301fba085998c65d",
+      "b63fd07202b9574145ad",
+      "4c61f2a1cc242aa00723"
+    ],
+    "recovery_seed0": [
+      "fea98f33de0993923d61",
+      "097679fb43076cc71256",
+      "abe692fc14bc4b68d52a",
+      "0c36bf37bdb385595696",
+      "eadfe739342d8f2d73cc",
+      "d7e85fb31add35d913df",
+      "492132cc848521c3e8db",
+      "0551c0c0a436600cff49",
+      "d88227c58ed8ebcaee0e",
+      "01732adac024a3636722",
+      "b757a8fc4296818fb172",
+      "5841b1441fb1838ff7ed",
+      "bf5a68bf837c146fbe8c",
+      "2331c97dcfdbd8ea7db2",
+      "80332fd223f32233f128",
+      "dbbc7f5835913d016239",
+      "f2189ce23eee7785d860",
+      "7e0e0b3607f4ab2ed347",
+      "5718a99e8931e0cd6409",
+      "4a84c774ff0ba539809d",
+      "39afd66bbaf31d8cc3aa",
+      "b5259a74cbe3ff76ae96",
+      "b5d79c718fa10b21f9ad",
+      "30d110195a81c1cf9fe2"
+    ]
+  },
+  "collection": {
+    "split": "train",
+    "image_size_hw": [
+      480,
+      640
+    ],
+    "cameras": [
+      "front",
+      "wrist"
+    ],
+    "execution_horizon_steps": 1,
+    "selection": "Declared case IDs only; retain failures; admit only separately validated complete expert demonstrations",
+    "counterfactual_unit": "Complete paired destinations per object and scene; report missing/failed members without replacing them"
+  }
+}

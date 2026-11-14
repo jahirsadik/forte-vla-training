@@ -1,4 +1,6 @@
 __pycache__/
 *.py[cod]
 .venv/
+.conda-env/
+.playwright-mcp/
 robotic-arm-pick-and-place/outputs/

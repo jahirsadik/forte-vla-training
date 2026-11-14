@@ -45,7 +45,7 @@ def main():
                 viewer.cam.azimuth = 140
                 viewer.cam.elevation = -25
                 if args.robot == "forte":
-                    viewer.opt.geomgroup[0] = int(args.collision_geoms)
+                    viewer.opt.geomgroup[3] = int(args.collision_geoms)
                     viewer.opt.geomgroup[1] = int(not args.collision_geoms)
                 else:
                     # Panda uses groups 2/3 for CAD/collisions; environment is 0.

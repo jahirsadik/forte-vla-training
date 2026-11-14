@@ -1,6 +1,6 @@
 """Step 2: geometric calibration and physical finger tests in a supported fixture.
 
-Six extra arm-lock constraints and a cube pedestal exist only in this in-memory
+Seven extra arm-lock constraints and a cube pedestal exist only in this in-memory
 diagnostic model. The task scene stays unchanged. This is not an arm-holding or
 lifting test. No finger pose is overwritten while physics is advancing.
 """
@@ -19,7 +19,7 @@ import numpy as np
 
 PROJECT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT))
-from robots.forte_gripper import ForteGripper
+from robots.forte_gripper import ForteGripper, load_config
 sys.path.insert(0, str(PROJECT / "tools"))
 from build_forte_scene import ARM_JOINTS, HOME, ROBOT, SCENE, digest, require
 
@@ -34,16 +34,16 @@ def geometry_checks() -> dict:
     mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)
     mujoco.mj_forward(model, data)
     site = model.site(grip.config["tool_site"])
-    require(int(site.bodyid[0]) == model.body(grip.config["tool_body"]).id, "Wrong tool body")
-    np.testing.assert_allclose(site.pos, grip.config["tool_offset_m"], atol=1e-12)
+    require(int(site.bodyid[0]) == model.body("forte_tool_frame").id, "Wrong tool frame")
+    np.testing.assert_allclose(site.pos, [0, 0, 0], atol=1e-12)
     np.testing.assert_allclose(site.quat, [1, 0, 0, 0], atol=1e-12)
     samples = []
     for width in (grip.max_width, 0.069, CUBE_SIZE, 0.030, grip.min_width):
         grip.initialize(data, width)
         mujoco.mj_forward(model, data)
         measured, center_error = grip.geometry(data)
-        require(abs(measured - width) < 1e-9, "Opening formula differs from collision geometry")
-        require(center_error < 1e-9, "Grasp site is not centered between fingers")
+        require(abs(measured - width - grip.config["pad_gap_offset_m"]) < 1e-7, "Opening formula differs from collision geometry")
+        require(center_error < 1e-5, "Grasp site is not centered between fingers")
         require(not any(c.dist < -1e-5 for c in data.contact), "Finger sweep creates penetration")
         samples.append({"driver_m": float(data.qpos[grip.driver_qpos]), "opening_m": measured})
 
@@ -51,7 +51,7 @@ def geometry_checks() -> dict:
     # This estimates table clearance for a centered cube and +X-down approach.
     rotation = data.site_xmat[grip.site].reshape(3, 3)
     origin = data.site_xpos[grip.site]
-    bodies = {model.body(n).id for n in ("wrist_link", "l_end_effector_link", "r_end_effector_link")}
+    bodies = {model.body(n).id for n in ("part_8_2", "part_1_35", "part_1_40")}
     furthest = 0.0
     for g in range(model.ngeom):
         if model.geom_bodyid[g] not in bodies or model.geom_contype[g] == 0:
@@ -62,6 +62,10 @@ def geometry_checks() -> dict:
         elif model.geom_type[g] == mujoco.mjtGeom.mjGEOM_CYLINDER:
             extent = float(model.geom_size[g, 0] * np.linalg.norm(direction[:2])
                            + model.geom_size[g, 1] * abs(direction[2]))
+        elif model.geom_type[g] == mujoco.mjtGeom.mjGEOM_MESH:
+            mesh = model.geom_dataid[g]
+            vertices = model.mesh_vert[model.mesh_vertadr[mesh]:model.mesh_vertadr[mesh] + model.mesh_vertnum[mesh]]
+            extent = float(np.max(vertices @ direction))
         else:
             raise ValueError("Unexpected gripper collision primitive in clearance calculation")
         furthest = max(furthest, float(rotation[:, 0] @ (data.geom_xpos[g] - origin)) + extent)
@@ -79,14 +83,14 @@ def geometry_checks() -> dict:
     grip.initialize(data, grip.max_width)
     data.qfrc_applied[:] = 0
     effort = grip.apply(data, grip.min_width)
-    require(effort == grip.config["effort_limit_n"], "Closing force cap is not enforced")
+    require(effort == -grip.config["effort_limit_n"], "Closing force cap is not enforced")
     require(np.count_nonzero(data.qfrc_applied) == 1
             and data.qfrc_applied[grip.follower_dof] == 0,
             "Gripper force leaked into the arm, follower, or cube coordinates")
     grip.initialize(data, grip.min_width)
-    require(grip.apply(data, grip.max_width) == -grip.config["effort_limit_n"],
+    require(grip.apply(data, grip.max_width) == grip.config["effort_limit_n"],
             "Opening force cap is not enforced")
-    return {"opening_samples": samples, "tool_offset_m": grip.config["tool_offset_m"],
+    return {"opening_samples": samples, "source_grasp_offset_canonical_m": grip.config["source_grasp_offset_canonical_m"],
             "approach_axis_local": grip.config["approach_axis_local"],
             "nominal_table_clearance_m": clearance}
 
@@ -143,10 +147,13 @@ def reset_fixture(model, data, grip, tool_position, with_cube):
 def contacts(model, data):
     normals = {"left": 0.0, "right": 0.0}
     cube = model.geom("calibration_cube").id
-    robot_bodies = {model.body(n).id for n in (
-        "shoulder_yaw_link", "shoulder_pitch_link", "upper_arm_link", "elbow_link",
-        "lower_arm_link", "wrist_link", "l_end_effector_link", "r_end_effector_link",
-    )}
+    grip_config = load_config()
+    contact_names = grip_config["finger_contact_geoms"]
+    base = model.body("base_link").id
+    robot_bodies = {base}
+    for body in range(base + 1, model.nbody):
+        if model.body_parentid[body] in robot_bodies:
+            robot_bodies.add(body)
     deepest = 0.0
     forbidden = []
     for i, contact in enumerate(data.contact):
@@ -155,8 +162,8 @@ def contacts(model, data):
         deepest = max(deepest, -float(contact.dist))
         if cube in (a, b):
             other = model.geom(b if a == cube else a).name
-            for side, prefix in (("left", "l_finger_"), ("right", "r_finger_")):
-                if other.startswith(prefix):
+            for side, names in (("left", contact_names["l"]), ("right", contact_names["r"])):
+                if other in names:
                     force = np.zeros(6)
                     mujoco.mj_contactForce(model, data, i, force)
                     normals[side] += max(0.0, float(force[0]))
@@ -167,7 +174,7 @@ def contacts(model, data):
         robot_b = model.geom_bodyid[b] in robot_bodies
         if (robot_a or robot_b) and contact.dist < -1e-5:
             other_name = model.geom(b if a == cube else a).name if cube in (a, b) else ""
-            allowed = cube in (a, b) and other_name.startswith(("l_finger_finger_", "r_finger_finger_"))
+            allowed = cube in (a, b) and any(other_name in names for names in contact_names.values())
             if not allowed:
                 forbidden.append(f"unexpected robot contact: {name_a}/{name_b}")
     return normals, deepest, forbidden
@@ -191,7 +198,7 @@ class CalibrationRun:
             blend = 10 * fraction**3 - 15 * fraction**4 + 6 * fraction**5
             derivative = (30 * fraction**2 - 60 * fraction**3 + 30 * fraction**4) / seconds
             width = start_width + blend * (end_width - start_width)
-            driver_speed = -0.5 * derivative * (end_width - start_width)
+            driver_speed = 0.5 * derivative * (end_width - start_width)
             self.data.qfrc_applied[:] = 0
             effort = self.grip.apply(self.data, width, driver_speed)
             mujoco.mj_step(self.model, self.data)
@@ -203,7 +210,7 @@ class CalibrationRun:
             self.peak_effort = max(self.peak_effort, abs(effort))
             speed = float(np.max(np.abs(self.data.qvel[[self.grip.driver_dof, self.grip.follower_dof]])))
             self.peak_speed = max(self.peak_speed, speed)
-            mimic = abs(float(self.data.qpos[self.grip.driver_qpos] + self.data.qpos[self.grip.follower_qpos]))
+            mimic = abs(float(self.data.qpos[self.grip.driver_qpos] - self.data.qpos[self.grip.follower_qpos]))
             self.peak_mimic = max(self.peak_mimic, mimic)
             _, center_error = self.grip.geometry(self.data)
             self.peak_center = max(self.peak_center, center_error)
@@ -265,7 +272,7 @@ def run(args):
             with viewer.lock():
                 viewer.cam.lookat[:] = tool_position
                 viewer.cam.distance, viewer.cam.azimuth, viewer.cam.elevation = 0.45, 135, -25
-                viewer.opt.geomgroup[0] = int(args.collision_geoms)
+                viewer.opt.geomgroup[3] = int(args.collision_geoms)
                 viewer.opt.geomgroup[1] = int(not args.collision_geoms)
                 viewer.opt.frame = mujoco.mjtFrame.mjFRAME_SITE
         session = CalibrationRun(model, data, grip, viewer)
@@ -279,10 +286,10 @@ def run(args):
             session.segment(opening, closing, 2.0)
             session.segment(closing, closing, 0.75)
             gap, _ = grip.geometry(data)
-            require(abs(gap - closing) < 0.0002, "Empty gripper did not reach requested close width")
+            require(abs(gap - closing - grip.config["pad_gap_offset_m"]) < 0.0002, "Empty gripper did not reach requested close width")
             session.segment(closing, opening, 2.0)
             session.segment(opening, opening, 0.75)
-            require(abs(grip.geometry(data)[0] - opening) < 0.0002, "Empty gripper did not reopen")
+            require(abs(grip.geometry(data)[0] - opening - grip.config["pad_gap_offset_m"]) < 0.0002, "Empty gripper did not reopen")
 
             print("CONTACT: fixture reset places an orange 4 cm cube on the pedestal")
             reset_fixture(model, data, grip, tool_position, True)

@@ -3,44 +3,86 @@
     "joints": {
       "shoulder_yaw": {
         "home_rad": 0.0,
-        "kp_nm_per_rad": 80.0,
-        "kd_nm_s_per_rad": 10.0
+        "kp_nm_per_rad": 147,
+        "kd_nm_s_per_rad": 11.8,
+        "position_limits_rad": [
+          -0.17453292519943295,
+          0.17453292519943295
+        ],
+        "effort_limit_nm": 1.8,
+        "speed_limit_rad_s": 10.47
       },
       "shoulder_pitch": {
-        "home_rad": -0.8,
-        "kp_nm_per_rad": 160.0,
-        "kd_nm_s_per_rad": 24.0
+        "home_rad": -1.5707963267948966,
+        "kp_nm_per_rad": 222,
+        "kd_nm_s_per_rad": 17.8,
+        "position_limits_rad": [
+          -3.141592653589793,
+          0.0
+        ],
+        "effort_limit_nm": 66,
+        "speed_limit_rad_s": 1.75
       },
       "shoulder_roll": {
         "home_rad": 0.0,
-        "kp_nm_per_rad": 40.0,
-        "kd_nm_s_per_rad": 4.0
+        "kp_nm_per_rad": 47,
+        "kd_nm_s_per_rad": 3.8,
+        "position_limits_rad": [
+          -2.6179938779914944,
+          2.0943951023931953
+        ],
+        "effort_limit_nm": 11,
+        "speed_limit_rad_s": 10.47
       },
       "elbow_pitch": {
-        "home_rad": 1.0,
-        "kp_nm_per_rad": 80.0,
-        "kd_nm_s_per_rad": 10.0
+        "home_rad": -1.5707963267948966,
+        "kp_nm_per_rad": 74,
+        "kd_nm_s_per_rad": 5.9,
+        "position_limits_rad": [
+          -7.923794804054256,
+          4.642575810304916
+        ],
+        "effort_limit_nm": 11,
+        "speed_limit_rad_s": 10.47
       },
       "lower_arm_roll": {
         "home_rad": 0.0,
-        "kp_nm_per_rad": 8.0,
-        "kd_nm_s_per_rad": 0.3
+        "kp_nm_per_rad": 6.8,
+        "kd_nm_s_per_rad": 0.55,
+        "position_limits_rad": [
+          -6.422811647339133,
+          6.14355896702004
+        ],
+        "effort_limit_nm": 3.6,
+        "speed_limit_rad_s": 5.24
       },
       "wrist_pitch": {
-        "home_rad": -0.2,
-        "kp_nm_per_rad": 20.0,
-        "kd_nm_s_per_rad": 0.6
+        "home_rad": 1.5707963267948966,
+        "kp_nm_per_rad": 7.2,
+        "kd_nm_s_per_rad": 0.57,
+        "position_limits_rad": [
+          -5.009094953223726,
+          7.557275661135447
+        ],
+        "effort_limit_nm": 3.6,
+        "speed_limit_rad_s": 5.24
+      },
+      "wrist_roll": {
+        "home_rad": 0.0,
+        "kp_nm_per_rad": 3.2,
+        "kd_nm_s_per_rad": 0.25,
+        "position_limits_rad": [
+          -6.422811647339133,
+          6.14355896702004
+        ],
+        "effort_limit_nm": 1.8,
+        "speed_limit_rad_s": 10.47
       }
     }
   },
   "gripper": {
-    "tool_body": "wrist_link",
+    "tool_body": "part_8_2",
     "tool_site": "grasp_site",
-    "tool_offset_m": [
-      0.227,
-      0.0285,
-      0.0
-    ],
     "approach_axis_local": [
       1.0,
       0.0,
@@ -51,16 +93,34 @@
       1.0,
       0.0
     ],
-    "driver_joint": "l_gripper_linear_joint",
-    "follower_joint": "r_gripper_linear_joint",
-    "zero_opening_m": 0.069,
-    "open_width_m": 0.108,
-    "empty_close_width_m": 0.01,
+    "driver_joint": "gripper_left_joint",
+    "follower_joint": "gripper_right_joint",
+    "zero_opening_m": 0.0,
+    "open_width_m": 0.074,
+    "empty_close_width_m": 0.0,
     "grasp_reference_width_m": 0.03,
-    "kp_n_per_m": 600.0,
-    "kd_n_s_per_m": 12.0,
-    "effort_limit_n": 10.0,
-    "speed_limit_m_per_s": 0.1
+    "kp_n_per_m": 2000.0,
+    "kd_n_s_per_m": 25.0,
+    "effort_limit_n": 20.0,
+    "speed_limit_m_per_s": 0.1,
+    "finger_contact_geoms": {
+      "l": [
+        "part_1_35_collision_1"
+      ],
+      "r": [
+        "part_1_40_collision_1"
+      ]
+    },
+    "finger_bodies": {
+      "l": "part_1_35",
+      "r": "part_1_40"
+    },
+    "source_grasp_offset_canonical_m": [
+      0.02,
+      0,
+      0.00581405
+    ],
+    "pad_gap_offset_m": 0.00139585435567
   },
   "workspace": {
     "table_center_m": [
@@ -129,5 +189,7 @@
     "cartesian_spacing_m": 0.005,
     "joint_check_spacing_rad": 0.02,
     "reference_speed_rad_per_s": 0.25
-  }
+  },
+  "model_id": "forte-kim-7dof-v1",
+  "hardware_status": "Seven arm DOFs confirmed by Simon; numerical limits, reductions and encoder zeros remain provisional."
 }

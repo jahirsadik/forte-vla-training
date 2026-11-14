@@ -1,0 +1,336 @@
+{
+  "description": "Kim Forte articulated model, byte-identical pinned source; Simon selected this model on 2026-11-03",
+  "revision": "3c8bbb91c8fdd0525949640003e133910fcefb84",
+  "files": [
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/A1_adapter.stl",
+      "bytes": 228284,
+      "sha256": "ee6ee081ad76ebeeb5b0813bdcab2fd5a4d5ec07d03dc10d308649d54775f44a",
+      "file": "meshes/A1_adapter.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Belt1.stl",
+      "bytes": 37284,
+      "sha256": "c78c6f21c3c33346428bd0f6c30ff78524710ec193fd7920a37893d73888bfd7",
+      "file": "meshes/Belt1.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Cover_3DPrinting.stl",
+      "bytes": 82884,
+      "sha256": "a77c9cd8cdff0dbb11cd248316c7759b17855474efc090aede3d03aed3b6dd2a",
+      "file": "meshes/Cover_3DPrinting.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/EL05_merged.stl",
+      "bytes": 3631084,
+      "sha256": "efd068dfd599fed63faed9204ae0fb9963fc099831fc5af4dbcd9a75d96927f0",
+      "file": "meshes/EL05_merged.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/EL05_merged_1.stl",
+      "bytes": 3631084,
+      "sha256": "c4bd572aef151e425ad0846f6dc8587e8f4006d094a3e20d438e81ebb6315890",
+      "file": "meshes/EL05_merged_1.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/ElbowLink.stl",
+      "bytes": 1713784,
+      "sha256": "6409b694703804a3eeedec93df4a80dd66afb4300df9192f1976ebe6c7f78951",
+      "file": "meshes/ElbowLink.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/ElbowPCB_cover.stl",
+      "bytes": 443984,
+      "sha256": "9a51f2b665788bd4b3c1033fae9da7906a22d167139bebb6314bfa87cc215c3b",
+      "file": "meshes/ElbowPCB_cover.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/HingeCover.stl",
+      "bytes": 680084,
+      "sha256": "e14cc27c905c17e2486dff1e94b09cb9ca21a7b0e4fc1c2f77f85ec7075f6d81",
+      "file": "meshes/HingeCover.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/LeftColumn.stl",
+      "bytes": 2554584,
+      "sha256": "cf65ac142f27eb7c7245b1eef2aadfdc8c6f533948e3821b448ae95bfa139d2b",
+      "file": "meshes/LeftColumn.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/LeftHinge.stl",
+      "bytes": 1241584,
+      "sha256": "9989087e85ebd0b0ec5216d3651e0bf0c585b38f2822a11f9d17ebbeb76e6fd8",
+      "file": "meshes/LeftHinge.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_1_9.stl",
+      "bytes": 141084,
+      "sha256": "7b35115de85ab95a80ccfd76df505e35465467d35bba6d3bbe701e9484462e74",
+      "file": "meshes/Part_1_9.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_2_5.stl",
+      "bytes": 374484,
+      "sha256": "7b9ae5f529d45a89354c81575187a896866266fe0ca6f614e1d87e998eedce13",
+      "file": "meshes/Part_2_5.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_30_1.stl",
+      "bytes": 114984,
+      "sha256": "5d216afc80ed6ee7156cb18ce52b958dda04c1169805dc2e1efc4e64c54da322",
+      "file": "meshes/Part_30_1.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_41.stl",
+      "bytes": 401684,
+      "sha256": "f9aeef09c9b9db731abfef33d4c19997d3b3cbe9af9f265b844112c28e5bf80a",
+      "file": "meshes/Part_41.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_42.stl",
+      "bytes": 105084,
+      "sha256": "992510ec20bc151d1e661e58dd967b1430738ba1fd3575ff5593d3730d47dda9",
+      "file": "meshes/Part_42.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_46.stl",
+      "bytes": 417084,
+      "sha256": "1f39bde584f1dc84ceeebb6f1527ff2a7bf9e8827c7b3249b1b241e321e9e9eb",
+      "file": "meshes/Part_46.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_4_2.stl",
+      "bytes": 309284,
+      "sha256": "9300f9d101c073e9283c968fe6734feae977adf04c0125930d23516d6bca2e3c",
+      "file": "meshes/Part_4_2.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_56.stl",
+      "bytes": 283484,
+      "sha256": "5f30152b5c53d3bd910cc6260f03eec0cd9c777e7286e3e1a2c4a23e9154eae2",
+      "file": "meshes/Part_56.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_57.stl",
+      "bytes": 280084,
+      "sha256": "08c5e8ec4768ba930fc82534f7a390083e1d71450e5e5dbaaccd240155fd437c",
+      "file": "meshes/Part_57.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_58.stl",
+      "bytes": 1655484,
+      "sha256": "6b145792dd1fccbe55d39dcc7c4bdf05b770204ef7924fcbd5f74043985c9f7f",
+      "file": "meshes/Part_58.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_59.stl",
+      "bytes": 118484,
+      "sha256": "eebc72bdda3c713eb17d459d62476d03c6e6f221aaf6408827849c98aa6bdcee",
+      "file": "meshes/Part_59.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_5_2.stl",
+      "bytes": 320784,
+      "sha256": "89c33732d14f951eb41e26589a651d9d41cc1aac13022f52211277de6c6ecc0d",
+      "file": "meshes/Part_5_2.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_61.stl",
+      "bytes": 430884,
+      "sha256": "63914ce8d59b81fe85b4266f052547a22bf42c8f9b2bcba7ab56593c0187563a",
+      "file": "meshes/Part_61.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_62.stl",
+      "bytes": 551884,
+      "sha256": "c3bec6dbac8fb63f677a0590a797d65bfb0249f403556f9558afc29c9dc1c5aa",
+      "file": "meshes/Part_62.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_63.stl",
+      "bytes": 337884,
+      "sha256": "61bfbd76195e6635fa24c0c11a60006172f1a7d627d066b1d7457beb5c6afe76",
+      "file": "meshes/Part_63.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_64.stl",
+      "bytes": 490784,
+      "sha256": "55101fa6e18914c1495a04d13c5048521d347db984526cb45ea055a9650e8d01",
+      "file": "meshes/Part_64.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_65.stl",
+      "bytes": 282184,
+      "sha256": "91d10b2dfccbbd25a14588bac5195a750965f54a0d976835239d248b96e1481e",
+      "file": "meshes/Part_65.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_66.stl",
+      "bytes": 396984,
+      "sha256": "e63a9c8b0ccc416ea9459f49fec6ea83282761f8d06c13d6d5ffe1741042f60d",
+      "file": "meshes/Part_66.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_67.stl",
+      "bytes": 396984,
+      "sha256": "c43b1d7de0aeee97c79f56a2cfb09a8f4632af4eb3710f958f25ce953bc675a0",
+      "file": "meshes/Part_67.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_6_3.stl",
+      "bytes": 73084,
+      "sha256": "77435227b512d3dee9947c40c2dfe72b61aa0b23f094fbd67e1fbb5e02912892",
+      "file": "meshes/Part_6_3.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_7_2.stl",
+      "bytes": 508684,
+      "sha256": "83b51330abf578ac9484e74d20d23420abd9169b7099f5885789cc05e5122cd6",
+      "file": "meshes/Part_7_2.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Part_8_2.stl",
+      "bytes": 337584,
+      "sha256": "a4c017d74f1e0a70acefcd419a54d83596bfd73e27a78bdc1bfb766b1d2287ad",
+      "file": "meshes/Part_8_2.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/RS60_merged.stl",
+      "bytes": 6071784,
+      "sha256": "02dca1e9c08fd8f3ef8684df9c208525e4d1850a13e3967f80452a9bd55d3bdc",
+      "file": "meshes/RS60_merged.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/RightColumn.stl",
+      "bytes": 663984,
+      "sha256": "64a514ffd06410cbc68c21ae0119ee6f37b6f8917a7faad982df668c061f538a",
+      "file": "meshes/RightColumn.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/ShoulderCable.stl",
+      "bytes": 316684,
+      "sha256": "98b13b378319d68e1d65412e55dc21c7d4d1f426e4acabb9901a9737ef29c60c",
+      "file": "meshes/ShoulderCable.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/ShoulderCable1.stl",
+      "bytes": 316684,
+      "sha256": "319eb174254443f0af52844dd9f7286051fa6506a41923310b30495e882e1718",
+      "file": "meshes/ShoulderCable1.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/ShoulderCable3.stl",
+      "bytes": 316684,
+      "sha256": "51b73af1b7e55950235b524539a98746b783a8ccec63caa8a569ca800061b9be",
+      "file": "meshes/ShoulderCable3.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/ShoulderCable4.stl",
+      "bytes": 316684,
+      "sha256": "04b1e3eee5f79b02e7de0f274c0a3bee7e68678b753453fecf002a8c249191c0",
+      "file": "meshes/ShoulderCable4.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/ShoulderPitchActDrum.stl",
+      "bytes": 2001584,
+      "sha256": "8117fbdf479f918f1b767cdb3ad7fb998a45f4a7d3de3d0fdb94aedddb4d8fbd",
+      "file": "meshes/ShoulderPitchActDrum.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/ShoulderRoll.stl",
+      "bytes": 2369084,
+      "sha256": "14beb0033504f754931cff46757aef932cfc2d5e065c7a689bc0cdc7bbe12557",
+      "file": "meshes/ShoulderRoll.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/ShoulderRollActAdapter.stl",
+      "bytes": 647884,
+      "sha256": "48b2541b37834146bf2ce2fa5d8a4b0f8250bc3b0671b0ada6b8336e2a31cc35",
+      "file": "meshes/ShoulderRollActAdapter.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Spiral_Gear_2.stl",
+      "bytes": 1598084,
+      "sha256": "c8eb0c8ea28180e87f0421b1a5652c3cbc333369ebf2fe51f89666b47db870bb",
+      "file": "meshes/Spiral_Gear_2.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Spur_gear__40_teeth_.stl",
+      "bytes": 544884,
+      "sha256": "1bb6655d6f6a459333e7e8cd6491151a63084d7bcb066b9c0a1beb121ce1c453",
+      "file": "meshes/Spur_gear__40_teeth_.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/Spur_gear__40_teeth__2.stl",
+      "bytes": 390284,
+      "sha256": "d5817a10334300429ef90d03ec122924534674522b468e500d473a9845af6791",
+      "file": "meshes/Spur_gear__40_teeth__2.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/UpperArmLeft.stl",
+      "bytes": 3571684,
+      "sha256": "cd193a9fdec680205136b62c9f9a53291bf86d3a8f4f395bb2540cb416fab04f",
+      "file": "meshes/UpperArmLeft.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/UpperArmRight.stl",
+      "bytes": 3882684,
+      "sha256": "57f5a2182b8aa195e649dcb5d5603ecfdbe079ad3f9be531e107dc5148aa178d",
+      "file": "meshes/UpperArmRight.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/act_drum.stl",
+      "bytes": 5321684,
+      "sha256": "63c999b65961d3558420f0bd3d1e75a1218fa1da8d41e3df6a8e8022aefa513a",
+      "file": "meshes/act_drum.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/bottom_base.stl",
+      "bytes": 621284,
+      "sha256": "9697313b83f9456a067572cb3c23cb1e17015676fba447917288610797dc4edc",
+      "file": "meshes/bottom_base.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/bottomcable_cover.stl",
+      "bytes": 83284,
+      "sha256": "d213506e2cde6e1694c19e2d002eff923605f9933aa4479b8d24a236992dfb7d",
+      "file": "meshes/bottomcable_cover.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/main_drum.stl",
+      "bytes": 3632584,
+      "sha256": "318a5e852c32701f247dc21c46665ae33d69f2a4fd1eef2e78d823a01a650991",
+      "file": "meshes/main_drum.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/meshes/turntable_cap.stl",
+      "bytes": 260384,
+      "sha256": "7dbf33d5fa925d0d7ae6ecd85d851ffbfc81b87690dbec671eca4f873df3877e",
+      "file": "meshes/turntable_cap.stl"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/robot.xml",
+      "bytes": 28187,
+      "sha256": "ea5db584322d0d188a085c0565c554c8a646ab6f8d26315ae347eea917180a1d",
+      "file": "robot.xml"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte/robot.yaml",
+      "bytes": 2675,
+      "sha256": "6c18e82e6c9fb7b6083878f5054a4df2ac522459730ad4b7cf9a4629bc9136cb",
+      "file": "robot.yaml"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte_actuators.py",
+      "bytes": 1863,
+      "sha256": "a62115a9610008f5919ac54273a6d9edc69228dddf532e9969bcf6cb557946ba",
+      "file": "forte_actuators.py"
+    },
+    {
+      "path": "src/mujoco_lab/assets/robot/forte_coordinates.py",
+      "bytes": 711,
+      "sha256": "29ed72e1ad85a028d9954bae6add9ff180bc450053edea7dfecabf5d9833903f",
+      "file": "forte_coordinates.py"
+    }
+  ]
+}

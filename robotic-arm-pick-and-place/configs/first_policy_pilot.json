@@ -1,0 +1,15 @@
+{
+  "version": "forte-first-policy-pilot-v1",
+  "purpose": "Small engineering pilot; not the full benchmark or a generalization claim",
+  "tasks": {
+    "sorting": ["red_cube_to_red", "red_cube_to_blue", "blue_cylinder_to_blue", "blue_cylinder_to_green"],
+    "bookshelf": ["extract_red", "extract_blue"]
+  },
+  "splits": {
+    "train": {"seeds": [0, 1, 2], "asset_set": "nominal"},
+    "validation": {"seeds": [1000], "asset_set": "validation"}
+  },
+  "axis": "development",
+  "layout": "shuffled",
+  "image_size_hw": [480, 640]
+}

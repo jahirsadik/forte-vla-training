@@ -1,0 +1,5 @@
+# Optional neural baseline, in addition to requirements.txt.
+# Verified Linux/RTX 4080 install:
+# python -m pip install -r requirements-learning.txt --index-url https://download.pytorch.org/whl/cu128
+# CPU installation: use https://download.pytorch.org/whl/cpu instead.
+torch==2.11.0

@@ -1,0 +1,14 @@
+{
+  "version": "forte-release-correction-pilot-v1",
+  "case_id": "0fc510ebb88105fe8404",
+  "execution_horizon_steps": 8,
+  "confirmation_steps": 3,
+  "rollouts": [
+    {"policy_seed": 0, "minimum_policy_steps": 650},
+    {"policy_seed": 0, "minimum_policy_steps": 900},
+    {"policy_seed": 0, "minimum_policy_steps": 1200},
+    {"policy_seed": 1, "minimum_policy_steps": 650},
+    {"policy_seed": 2, "minimum_policy_steps": 650},
+    {"policy_seed": 3, "minimum_policy_steps": 650}
+  ]
+}

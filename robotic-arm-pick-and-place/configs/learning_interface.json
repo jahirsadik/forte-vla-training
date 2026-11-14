@@ -1,0 +1,17 @@
+{
+  "version": "forte-learning-interface-v1",
+  "action_contract_id": "forte-joint-reference-v2",
+  "prediction_horizon_steps": 8,
+  "execution_horizon_steps": 1,
+  "policy_hz": 20,
+  "arm_action": "normalized joint-reference velocity; integrated by the environment",
+  "gripper_action": "absolute nominal jaw width, normalized to [-1, 1]",
+  "action_shape": [8],
+  "proprio_shape": [23],
+  "camera_names": ["front", "wrist"],
+  "capture_size_hw": [480, 640],
+  "image_preprocessing": "model-specific resize/crop/normalize at training and inference; preserve native master frames",
+  "training_targets": "contiguous valid expert actions; mask episode ends and stop chunks before injected faults",
+  "normalization": "action targets already use the environment's [-1, 1] control units; proprio statistics from training split only",
+  "pretrained_action_compatibility": "no implicit Cartesian, joint-position, or motor-space conversion"
+}

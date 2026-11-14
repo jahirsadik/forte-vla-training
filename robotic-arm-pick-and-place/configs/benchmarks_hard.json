@@ -1,0 +1,50 @@
+{
+  "protocol_version": "forte-bookshelf-hard-v1",
+  "control_hz": 20,
+  "joint_reference_speed_rad_s": 0.25,
+  "gripper_reference_speed_m_s": 0.1,
+  "horizon_steps": 2000,
+  "settle_seconds": 0.3,
+  "success_dwell_seconds": 0.5,
+  "lift_height_m": 0.015,
+  "linear_speed_tolerance_m_s": 0.015,
+  "angular_speed_tolerance_rad_s": 0.1,
+  "orientation_tolerance_deg": 15,
+  "release_clearance_m": 0.005,
+  "support_height_tolerance_m": 0.006,
+  "contact_force_threshold_n": 0.02,
+  "distractor_translation_limit_m": 0.06,
+  "distractor_rotation_limit_deg": 35,
+  "drop_below_table_m": 0.04,
+  "penetration_failure_m": 0.02,
+  "reset_penetration_tolerance_m": 0.001,
+  "reset_attempts": 12,
+  "bookshelf": {
+    "shelf_offsets_y_m": [
+      0.25,
+      0.185,
+      0.12,
+      0.055,
+      -0.01,
+      -0.075
+    ],
+    "row_jitter_m": 0.003,
+    "depth_jitter_m": 0.004,
+    "orange_start_xy_m": [
+      0.3,
+      -0.24
+    ],
+    "orange_jitter_xy_m": [
+      0.025,
+      0.015
+    ],
+    "placement_center_xy_m": [
+      0.28,
+      0.04
+    ],
+    "placement_size_xy_m": [
+      0.28,
+      0.3
+    ]
+  }
+}

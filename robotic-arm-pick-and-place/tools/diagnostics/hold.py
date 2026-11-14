@@ -102,7 +102,7 @@ def reference(t, opened, closed):
         return opened, 0.0
     blend = 10 * fraction**3 - 15 * fraction**4 + 6 * fraction**5
     derivative = (30 * fraction**2 - 60 * fraction**3 + 30 * fraction**4) / 2
-    return start + blend * (end - start), -0.5 * derivative * (end - start)
+    return start + blend * (end - start), 0.5 * derivative * (end - start)
 
 
 def save_outputs(path, report, rows):
@@ -151,7 +151,7 @@ def run(args):
     np.testing.assert_allclose(model.opt.gravity, [0, 0, -9.81])
     require(model.neq == 1, "The test must use the task model with only its finger equality")
     tool_reference = robot.tool_position
-    wrist = model.body("wrist_link" if args.robot == "forte" else "hand").id
+    wrist = model.body("part_8_2" if args.robot == "forte" else "hand").id
     # Forte fuses static bodies into world; Panda retains its named table body.
     environment = {0, *(model.body(f"cube_{color}").id for color in ("red", "green", "blue"))}
     table = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_BODY, "table")
@@ -201,7 +201,7 @@ def run(args):
                     viewer.cam.lookat[:] = (0.4, 0, 0.3)
                     viewer.cam.distance, viewer.cam.azimuth, viewer.cam.elevation = 1.6, 140, -25
                     if args.robot == "forte":
-                        viewer.opt.geomgroup[0] = int(args.collision_geoms)
+                        viewer.opt.geomgroup[3] = int(args.collision_geoms)
                         viewer.opt.geomgroup[1] = int(not args.collision_geoms)
             wall_start = time.perf_counter()
             for index in range(count):
@@ -253,7 +253,7 @@ def run(args):
                     measured_width, center = grip.geometry(data)
                     speed = float(np.max(np.abs(data.qvel[[grip.driver_dof, grip.follower_dof]])))
                     peak_gripper_speed = max(peak_gripper_speed, speed)
-                    mimic = abs(float(data.qpos[grip.driver_qpos] + data.qpos[grip.follower_qpos]))
+                    mimic = abs(float(data.qpos[grip.driver_qpos] - data.qpos[grip.follower_qpos]))
                     peak_mimic = max(peak_mimic, mimic)
                     require(center < 0.0001 and mimic < 0.0001, "Gripper centering/coupling failed")
                     require(speed <= grip.config["speed_limit_m_per_s"] + 0.001, "Gripper speed limit exceeded")
@@ -284,7 +284,8 @@ def run(args):
             require(not np.any(saturation), "Arm saturated during this home-pose protocol")
             if isinstance(robot, ForteRobot):
                 require(observed_push > 0.0001, "No measurable push response; check for hidden constraints")
-                require(abs(measured_width - robot.open_width) < 0.0002, "Gripper did not reopen")
+                require(abs(measured_width - robot.open_width - robot.gripper.config["pad_gap_offset_m"]) < 0.0002,
+                        "Gripper did not reopen to its calibrated physical gap")
             report.update({"status": "PASS", "simulated_seconds": float(data.time),
                            "peak_tool_displacement_m": peak_tool,
                            "initial_settled_tool_error_m": initial_error,

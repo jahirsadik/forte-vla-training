@@ -1,0 +1,262 @@
+{
+  "configuration": {
+    "scale_status": "Photo-inspired estimates, not measured hardware dimensions",
+    "table": {
+      "center_xy_m": [
+        0.25,
+        0.0
+      ],
+      "size_xy_m": [
+        1.3,
+        1.1
+      ],
+      "surface_z_m": 0.76,
+      "top_thickness_m": 0.04,
+      "leg_width_m": 0.055
+    },
+    "robot": {
+      "base_xy_m": [
+        0.0,
+        0.0
+      ],
+      "mount_clearance_m": 0.002,
+      "home_rad": [
+        0.0,
+        -1.5707963267948966,
+        0.0,
+        -1.5707963267948966,
+        0.0,
+        1.5707963267948966,
+        0.0
+      ]
+    },
+    "wrist_camera": {
+      "frame": "forte_tool_frame",
+      "pos": [
+        -0.09,
+        0,
+        0.085
+      ],
+      "lookat": [
+        0.3,
+        0,
+        -0.035
+      ],
+      "fovy": 80
+    },
+    "cameras": {
+      "overview": {
+        "pos": [
+          -1.25,
+          -1.65,
+          1.85
+        ],
+        "lookat": [
+          0.38,
+          0,
+          0.86
+        ],
+        "fovy": 43
+      },
+      "front": {
+        "pos": [
+          -0.45,
+          -0.65,
+          1.45
+        ],
+        "lookat": [
+          0.36,
+          0,
+          0.82
+        ],
+        "fovy": 52
+      },
+      "overhead": {
+        "pos": [
+          0.35,
+          0,
+          2.15
+        ],
+        "lookat": [
+          0.35,
+          0,
+          0.76
+        ],
+        "fovy": 55
+      }
+    },
+    "tray": {
+      "size_xy_m": [
+        0.22,
+        0.24
+      ],
+      "floor_thickness_m": 0.008,
+      "wall_thickness_m": 0.008,
+      "wall_height_m": 0.035
+    },
+    "trays": [
+      {
+        "name": "red",
+        "center_xy_m": [
+          0.6,
+          0.32
+        ],
+        "color": [
+          0.62,
+          0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "blue",
+        "center_xy_m": [
+          0.6,
+          0
+        ],
+        "color": [
+          0.08,
+          0.25,
+          0.62
+        ]
+      },
+      {
+        "name": "green",
+        "center_xy_m": [
+          0.6,
+          -0.32
+        ],
+        "color": [
+          0.08,
+          0.46,
+          0.23
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "name": "red_cube",
+        "description": "red cube",
+        "shape": "box",
+        "size_m": [
+          0.045,
+          0.045,
+          0.045
+        ],
+        "mass_kg": 0.065,
+        "color": [
+          0.84,
+          0.08,
+          0.07
+        ]
+      },
+      {
+        "name": "blue_cylinder",
+        "description": "blue cylinder",
+        "shape": "cylinder",
+        "size_m": [
+          0.044,
+          0.044,
+          0.07
+        ],
+        "mass_kg": 0.085,
+        "color": [
+          0.04,
+          0.22,
+          0.82
+        ]
+      },
+      {
+        "name": "green_capsule",
+        "description": "green capsule",
+        "shape": "capsule",
+        "size_m": [
+          0.036,
+          0.036,
+          0.072
+        ],
+        "mass_kg": 0.06,
+        "color": [
+          0.1,
+          0.66,
+          0.22
+        ]
+      },
+      {
+        "name": "yellow_wedge",
+        "description": "yellow wedge",
+        "shape": "wedge",
+        "size_m": [
+          0.06,
+          0.04,
+          0.045
+        ],
+        "mass_kg": 0.06,
+        "color": [
+          0.92,
+          0.68,
+          0.04
+        ]
+      },
+      {
+        "name": "purple_bar",
+        "description": "purple bar",
+        "shape": "box",
+        "size_m": [
+          0.075,
+          0.028,
+          0.028
+        ],
+        "mass_kg": 0.055,
+        "color": [
+          0.5,
+          0.12,
+          0.69
+        ]
+      },
+      {
+        "name": "orange_puck",
+        "description": "orange puck",
+        "shape": "cylinder",
+        "size_m": [
+          0.056,
+          0.056,
+          0.025
+        ],
+        "mass_kg": 0.065,
+        "color": [
+          0.94,
+          0.32,
+          0.03
+        ]
+      }
+    ],
+    "layout": {
+      "x_m": [
+        0.24,
+        0.39
+      ],
+      "y_m": [
+        -0.27,
+        -0.06,
+        0.15
+      ],
+      "clutter_x_m": [
+        0.27,
+        0.375
+      ],
+      "clutter_y_m": [
+        -0.18,
+        -0.075,
+        0.03
+      ],
+      "jitter_m": 0.012,
+      "minimum_gap_m": 0.008
+    }
+  },
+  "provenance": "Original parametric sorting assets; retained repository Forte robot",
+  "robot_source_sha256": "b8667cc1a830b8bbf22738c492104c96ec4c756bab909c05c242fdd7c2c80084",
+  "limitations": [
+    "Estimated geometry and contact properties",
+    "Seven-arm-joint Forte from pinned Kim source; hardware limits provisional"
+  ]
+}
